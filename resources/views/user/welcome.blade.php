@@ -573,7 +573,7 @@
                     <input type="number" name="age" placeholder="Age" value="{{ old('age') }}" required>
                     <select name="role" required>
                         <option value="">Select role</option>
-                        <option value="client" {{ old('role') == 'client' ? 'selected' : '' }}>Patient</option>
+                        <option value="patient" {{ old('role') == 'client' ? 'selected' : '' }}>Patient</option>
                         <option value="therapist" {{ old('role') == 'therapist' ? 'selected' : '' }}>Therapist</option>
                         <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                     </select>

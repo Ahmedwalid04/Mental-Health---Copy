@@ -16,13 +16,20 @@ class CreateAssessmentsTable extends Migration
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->json('answers');
+    
+            // Store selected answers (optional if you only care about the score)
+            $table->json('answers')->nullable();
+    
+            // Store final calculated score
+            $table->unsignedInteger('score')->default(0);
+    
+            // Store a summary/result ("Needs therapy", "Doesn't need therapy", etc.)
             $table->text('result_summary');
+    
             $table->timestamps();
         });
-        
-        
     }
+    
 
     /**
      * Reverse the migrations.
