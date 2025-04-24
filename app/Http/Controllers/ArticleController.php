@@ -11,8 +11,8 @@ class ArticleController extends Controller
     // 📄 List all articles
     public function index()
     {
-        $user = Auth::user();
-
+        $user = Auth::user();       
+        
         if ($user && $user->role === 'therapist') {
             $articles = Article::with('author')->latest()->get();
             return view('therapist.index', compact('articles'));        }
@@ -84,4 +84,9 @@ class ArticleController extends Controller
         $article->delete();
         return redirect()->route('therapist.index')->with('success', 'Article deleted successfully!');
     }
+
+    public function show(Article $article)
+{
+    return view('articles.show', compact('article'));
+}
 }

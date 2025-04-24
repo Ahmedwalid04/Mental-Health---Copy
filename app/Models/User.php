@@ -1,5 +1,7 @@
 <?php
 
+// app/Models/User.php
+
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -25,7 +27,6 @@ class User extends Authenticatable
         'password',
     ];
 
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -44,4 +45,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relationship to TherapistProfile (one-to-one)
+    public function therapistProfile()
+    {
+        return $this->hasOne(TherapistProfile::class);
+    }
 }

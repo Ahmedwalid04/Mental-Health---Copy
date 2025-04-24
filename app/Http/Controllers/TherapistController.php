@@ -31,4 +31,11 @@ class TherapistController extends Controller
 
         return view('profile', compact('therapist', 'p'));
     }
+    public function show($id)
+    {
+        // Find the user and eager load the therapist profile
+        $user = User::with('therapistProfile')->findOrFail($id);
+
+        return view('therapist.profile', compact('user'));
+    }
 }

@@ -2,110 +2,190 @@
 
 @section('content')
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
   body {
-    background-color: #c9ddfc !important;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-  }
-
-  .header h1 {
-    color: #0f2c67;
-    font-weight: 600;
-    font-size: 18px;
+    background-color: #b7d3ec;
     margin: 0;
-  }
-
-  .btn {
-    background-color: #0f2c67;
-    color: white;
-    font-weight: 600;
-    font-size: 12px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 0.2);
-    cursor: pointer;
-    text-decoration: none;
+    padding: 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    color: #1a202c;
+    min-height: 100vh;
   }
 
   .container {
-    background-color: #fef8f0;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+  article {
+    background-color: #f9f4e9;
     border-radius: 8px;
-    padding: 40px 0;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    position: relative;
+  }
+  header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .author-info {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    min-height: 280px;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    gap: 12px;
   }
 
-  .container img {
-    margin-bottom: 16px;
-    width: 240px;
-    height: 160px;
+  .author-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     object-fit: cover;
-    background-color: #ccc;
   }
 
-  .no-articles {
-    color: white;
+  .author-name {
     font-weight: 600;
     font-size: 12px;
-    margin: 0 0 4px 0;
+    line-height: 1.2;
+    margin: 0;
   }
 
-  .subtext {
-    color: #7a7a8c;
-    font-size: 12px;
-    margin: 0 0 16px 0;
+  .post-time {
+    font-size: 10px;
+    color: #4a5568;
+    margin: 0;
+    line-height: 1.2;
   }
 
-  .article-box {
-    background-color: #fef8f0;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  .more-options {
+    background: none;
+    border: none;
+    color: #1a202c;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
   }
 
-  .article-title {
-    color: #0f2c67;
-    font-weight: 600;
-    margin-bottom: 8px;
+  .more-options:hover {
+    color: #4a5568;
   }
 
-  .article-content {
+  h2 {
+    font-weight: 700;
     font-size: 14px;
-    color: #333;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+  }
+
+  p.description {
+    font-size: 12px;
+    color: inherit;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+  }
+
+  p.description a.read-more {
+    color: #3b5998;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 4px;
+  }
+
+  p.description a.read-more:hover {
+    text-decoration: underline;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 0;
+  }
+
+  .tag {
+    background-color: #d1d9e9;
+    color: #1a202c;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 12px;
+    }
+
+    article {
+      padding: 16px;
+    }
+
+    h2 {
+      font-size: 13px;
+    }
+
+    p.description {
+      font-size: 11px;
+    }
+
+    .author-name {
+      font-size: 11px;
+    }
+
+    .post-time {
+      font-size: 9px;
+    }
   }
 </style>
 
-<div class="header">
-  <h1>Articles</h1>
-  <a href="{{ route('articles.create') }}" class="btn">Add Article</a>
-</div>
 
-@if($articles->isEmpty())
   <div class="container">
-    <img src="https://placehold.co/240x160/cccccc/757575/png?text=240%C3%97160" alt="Placeholder image" />
-    <p class="no-articles">No articles yet</p>
-    <p class="subtext">Create your first article to get started</p>
-    <a href="{{ route('articles.create') }}" class="btn">Add Article</a>
+    @if($articles->isEmpty())
+      <p class="no-articles">No articles yet</p>
+    @else
+      @foreach($articles as $article)
+        <article class="{{ $loop->first ? 'highlighted' : '' }}">
+          <header>
+            <div class="author-info">
+              <img
+                src="{{ $article->author->therapistProfile ? asset('storage/' . $article->author->therapistProfile->profile_image) : asset('images/default-profile.png') }}"
+                alt="Author Profile"
+              />
+              <div>
+                <p class="author-name">{{ $article->author->name }}</p>
+                <p class="post-time">{{ $article->created_at->diffForHumans() }}</p>
+              </div>
+            </div>
+            <button aria-label="More options" class="more-options">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </header>
+          <h2>{{ $article->title }}</h2>
+          <p class="description">
+            {{ Str::limit($article->content, 200) }}
+            <a
+              href="{{ route('articles.show', $article->id) }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="read-more"
+            >
+              Read more
+            </a>
+          </p>
+
+          @if($article->tags)
+            <div class="tags">
+              @foreach($article->tags as $tag)
+                <span class="tag">{{ $tag->name }}</span>
+              @endforeach
+            </div>
+          @endif
+        </article>
+      @endforeach
+    @endif
   </div>
-@else
-  @foreach($articles as $article)
-    <div class="article-box">
-      <h2 class="article-title">{{ $article->title }}</h2>
-      <p class="article-content">{{ Str::limit($article->content, 200) }}</p>
-    </div>
-  @endforeach
-@endif
 @endsection

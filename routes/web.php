@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AssessmentController;
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
@@ -17,8 +18,10 @@ Route::get('/home', function () {
     }
     return view('user.home');
 });
-
+// Article
 Route::resource('articles', ArticleController::class);
+Route::get('/therapist/articles', [ArticleController::class, 'index'])->name('therapist.index');
+
 // Activities route
 Route::get('/activities', function () {
     $user = Auth::user();
@@ -107,5 +110,11 @@ Route::get('/', function () {
 // Authentication routes
 Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
 Route::post('/register', [AuthController::class, 'register'])->name('register.custom');
+
+//assessments
+Route::get('/assessments/result', [AssessmentController::class, 'result'])->name('assessments.result');
+Route::resource('assessments', AssessmentController::class)->except(['show']);
+
+//Route::get('/assessments', [AssessmentController::class, 'index'])->name('user.assessmentsindex');
 
 
