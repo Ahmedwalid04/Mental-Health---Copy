@@ -9,7 +9,7 @@
 </head>
 <body>
 
-@include('partials.notloggednavbar') {{-- Reusable navbar --}}
+@include('partials.clientnavbar') {{-- Reusable navbar --}}
 
 <div class="main-content">
     @yield('content') {{-- Dynamic page content --}}

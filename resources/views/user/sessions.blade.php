@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.client')
 
 @section('title', 'Sessions')
 
@@ -6,8 +6,8 @@
 
     <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <title>Mental Wellbeing Therapists</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -313,15 +313,18 @@
                     <div class="time" aria-label="Session time">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                             <circle cx="12" cy="12" r="10" stroke-width="2" stroke="#0b246e" fill="none"></circle>
-                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
-                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
+                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
                         </svg>
                         <span>02:00PM-05:00PM</span>
                     </div>
                     <p class="date">Monday,August 19</p>
                     <div class="price-group" aria-label="Price for 1 hour session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">1280 EGP</span>
@@ -329,7 +332,8 @@
                     </div>
                     <div class="price-group" aria-label="Price for 30 minutes session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">800 EGP</span>
@@ -364,15 +368,18 @@
                     <div class="time" aria-label="Session time">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                             <circle cx="12" cy="12" r="10" stroke-width="2" stroke="#0b246e" fill="none"></circle>
-                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
-                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
+                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
                         </svg>
                         <span>05:00PM-08:00PM</span>
                     </div>
                     <p class="date">Monday,August 19</p>
                     <div class="price-group" aria-label="Price for 1 hour session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">1280 EGP</span>
@@ -380,7 +387,8 @@
                     </div>
                     <div class="price-group" aria-label="Price for 30 minutes session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">800 EGP</span>
@@ -415,15 +423,18 @@
                     <div class="time" aria-label="Session time">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                             <circle cx="12" cy="12" r="10" stroke-width="2" stroke="#0b246e" fill="none"></circle>
-                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
-                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
+                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
                         </svg>
                         <span>08:00PM-11:00PM</span>
                     </div>
                     <p class="date">Monday,August 19</p>
                     <div class="price-group" aria-label="Price for 1 hour session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">1280 EGP</span>
@@ -431,7 +442,8 @@
                     </div>
                     <div class="price-group" aria-label="Price for 30 minutes session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">800 EGP</span>
@@ -466,15 +478,18 @@
                     <div class="time" aria-label="Session time">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                             <circle cx="12" cy="12" r="10" stroke-width="2" stroke="#0b246e" fill="none"></circle>
-                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
-                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
+                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
                         </svg>
                         <span>08:00AM-11:00AM</span>
                     </div>
                     <p class="date">Monday,August 19</p>
                     <div class="price-group" aria-label="Price for 1 hour session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">1280 EGP</span>
@@ -482,7 +497,8 @@
                     </div>
                     <div class="price-group" aria-label="Price for 30 minutes session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">800 EGP</span>
@@ -517,15 +533,18 @@
                     <div class="time" aria-label="Session time">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                             <circle cx="12" cy="12" r="10" stroke-width="2" stroke="#0b246e" fill="none"></circle>
-                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
-                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
+                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
                         </svg>
                         <span>12:00PM-03:00PM</span>
                     </div>
                     <p class="date">Monday,August 19</p>
                     <div class="price-group" aria-label="Price for 1 hour session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">1280 EGP</span>
@@ -533,7 +552,8 @@
                     </div>
                     <div class="price-group" aria-label="Price for 30 minutes session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">800 EGP</span>
@@ -568,15 +588,18 @@
                     <div class="time" aria-label="Session time">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                             <circle cx="12" cy="12" r="10" stroke-width="2" stroke="#0b246e" fill="none"></circle>
-                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
-                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="12" y1="6" x2="12" y2="12" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
+                            <line x1="12" y1="12" x2="16" y2="14" stroke="#0b246e" stroke-width="2"
+                                  stroke-linecap="round"></line>
                         </svg>
                         <span>03:00PM-06:00PM</span>
                     </div>
                     <p class="date">Monday,August 19</p>
                     <div class="price-group" aria-label="Price for 1 hour session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">1280 EGP</span>
@@ -584,7 +607,8 @@
                     </div>
                     <div class="price-group" aria-label="Price for 30 minutes session">
                         <svg class="icon-money" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
+                            <path fill="currentColor"
+                                  d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.963 0-9-4.037-9-9s4.037-9 9-9 9 4.037 9 9-4.037 9-9 9z"/>
                             <path fill="currentColor" d="M12 6v12m-3-3h6"/>
                         </svg>
                         <span class="price">800 EGP</span>

@@ -1,4 +1,4 @@
-<!-- resources/views/layouts/app.blade.php -->
+<!-- resources/views/layouts/client.blade.php -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,7 @@
 </head>
 <body>
 
-@include('partials.navbar') {{-- Reusable navbar --}}
+@include('partials.clientnavbar') {{-- Reusable navbar --}}
 
 <div class="main-content">
     @yield('content') {{-- Dynamic page content --}}
