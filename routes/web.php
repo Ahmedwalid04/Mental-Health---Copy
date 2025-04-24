@@ -32,14 +32,7 @@ Route::get('/activities', function () {
 });
 
 
-// Activities route
-Route::get('/activities', function () {
-    $user = Auth::user();
-    if ($user && $user->role === 'therapist') {
-        return view('therapist.activities');
-    }
-    return view('user.activities');
-});
+
 
 // Contact route
 Route::get('/contact', function () {
@@ -101,8 +94,8 @@ Route::get('/', function () {
     $user = Auth::user();
     if ($user) {
         return $user->role === 'therapist'
-            ? view('therapist.home')
-            : view('user.home');
+            ? view('therapist.welcome')
+            : view('user.welcome');
     }
     return view('user.welcome');
 })->name('welcome');
