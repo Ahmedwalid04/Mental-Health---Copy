@@ -11,7 +11,7 @@
         <div class="div-2">
             <a href="{{ url('/home') }}"><div class="div-3">Home</div></a>
             <a href="{{ url('/sessions') }}"><div class="div-4">Sessions</div></a>
-            <a href="{{ url('/forum') }}"><div class="div-5">Forum</div></a>
+            <a href="{{ url('/articles') }}"><div class="div-5">Arcticles</div></a>
             <a href="{{ url('/activities') }}"><div class="div-6">Activities</div></a>
             <a href="{{ url('/pricing') }}"><div class="div-7">Pricing</div></a>
             <a href="{{ url('/contact') }}"><div class="div-8">Contact</div></a>

@@ -18,8 +18,10 @@ Route::get('/home', function () {
     }
     return view('user.home');
 });
-
+// Article
 Route::resource('articles', ArticleController::class);
+Route::get('/therapist/articles', [ArticleController::class, 'index'])->name('therapist.index');
+
 // Activities route
 Route::get('/activities', function () {
     $user = Auth::user();
