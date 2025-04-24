@@ -4,277 +4,8 @@
 
 @section('content')
 
-    <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <title>Mental Wellbeing Therapists</title>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-            * {
-                box-sizing: border-box;
-            }
-
-            body {
-                margin: 0;
-                font-family: 'Inter', sans-serif;
-                background-color: #ffffff;
-                color: #1f2937;
-            }
-
-            .container {
-                max-width: 1280px;
-                margin-left: auto;
-                margin-right: auto;
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            /* Hero Section */
-            .hero {
-                text-align: center;
-                padding-top: 2.5rem;
-                padding-bottom: 1.5rem;
-            }
-
-            .hero img {
-                max-width: 30%;
-                height: auto;
-                margin-bottom: 1rem;
-            }
-
-            .hero h1 {
-                font-weight: 800;
-                font-size: 1.5rem;
-                line-height: 1.2;
-                color: #0b246e;
-                margin: 0;
-            }
-
-            @media (min-width: 640px) {
-                .hero h1 {
-                    font-size: 1.875rem;
-                }
-            }
-
-            @media (min-width: 768px) {
-                .hero h1 {
-                    font-size: 2.25rem;
-                }
-            }
-
-            .hero p {
-                margin-top: 0.25rem;
-                font-weight: 400;
-                font-size: 1.125rem;
-                color: #2d4db7;
-            }
-
-            /* Therapists Section */
-            .therapists-section {
-                background-color: #b4d0eb;
-                padding-top: 2.5rem;
-                padding-bottom: 2.5rem;
-            }
-
-            .therapists-section h2 {
-                color: #0b246e;
-                font-weight: 800;
-                font-size: 1.25rem;
-                text-align: center;
-                margin: 0 0 2.5rem 0;
-            }
-
-            @media (min-width: 640px) {
-                .therapists-section h2 {
-                    font-size: 1.5rem;
-                }
-            }
-
-            @media (min-width: 768px) {
-                .therapists-section h2 {
-                    font-size: 1.875rem;
-                }
-            }
-
-            .therapists-grid {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                max-width: 1200px;
-                margin-left: auto;
-                margin-right: auto;
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            @media (min-width: 640px) {
-                .therapists-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-            }
-
-            @media (min-width: 1024px) {
-                .therapists-grid {
-                    grid-template-columns: repeat(3, 1fr);
-                }
-            }
-
-            .card {
-                background-color: #fef9f0;
-                border-radius: 0.5rem;
-                padding: 1.5rem;
-                max-width: 320px;
-                margin-left: auto;
-                margin-right: auto;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .card-header {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .avatar {
-                width: 48px;
-                height: 48px;
-                border-radius: 9999px;
-                object-fit: cover;
-                background-color: #14b8a6;
-            }
-
-            .name {
-                font-weight: 700;
-                font-size: 0.875rem;
-                color: #0b246e;
-                margin: 0;
-            }
-
-            .title {
-                font-weight: 400;
-                font-size: 0.75rem;
-                color: #0b246e;
-                margin: 0;
-            }
-
-            .tags {
-                display: flex;
-                gap: 0.5rem;
-            }
-
-            .tag {
-                font-size: 0.75rem;
-                color: #6b7280;
-                background-color: #d1d5db;
-                border-radius: 0.375rem;
-                padding: 0.125rem 0.5rem;
-                user-select: none;
-            }
-
-            .time,
-            .date,
-            .price-group {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                font-weight: 600;
-                font-size: 0.875rem;
-                color: #0b246e;
-            }
-
-            .date {
-                font-weight: 400;
-                font-size: 0.75rem;
-                margin-top: -0.25rem;
-                margin-bottom: 0.75rem;
-            }
-
-            .price-group {
-                gap: 0.25rem;
-            }
-
-            .price {
-                font-weight: 600;
-                font-size: 0.875rem;
-                color: #0b246e;
-            }
-
-            .price-badge {
-                background-color: #0b246e;
-                color: white;
-                font-weight: 600;
-                font-size: 0.625rem;
-                border-radius: 9999px;
-                padding: 0.125rem 0.5rem;
-                user-select: none;
-                white-space: nowrap;
-            }
-
-            .buttons {
-                display: flex;
-                gap: 0.75rem;
-            }
-
-            .btn-profile {
-                background-color: #0b246e;
-                color: white;
-                font-weight: 600;
-                font-size: 0.875rem;
-                border: none;
-                border-radius: 0.375rem;
-                padding: 0.5rem 1rem;
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-                flex: 1;
-            }
-
-            .btn-profile:hover {
-                background-color: #0a1d4a;
-            }
-
-            .btn-book {
-                background-color: #d1d9f7;
-                color: #0b246e;
-                font-weight: 600;
-                font-size: 0.875rem;
-                border: none;
-                border-radius: 0.375rem;
-                padding: 0.5rem 1rem;
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-                flex: 1;
-            }
-
-            .btn-book:hover {
-                background-color: #b7c4f5;
-            }
-
-            /* Icons */
-            .icon {
-                display: inline-block;
-                width: 16px;
-                height: 16px;
-                fill: none;
-                stroke: #0b246e;
-                stroke-width: 1.5;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-            }
-
-            .icon-money {
-                width: 16px;
-                height: 16px;
-                fill: #0b246e;
-                margin-right: 0.25rem;
-            }
-        </style>
-    </head>
-    <body>
-    <main>
+<body>
         <section class="hero container" aria-label="Hero section">
             <img
                 src="https://storage.googleapis.com/a1aa/image/e9691643-0a56-42a5-7d03-626281edbb6f.jpg"
@@ -597,8 +328,272 @@
                 </article>
             </div>
         </section>
-    </main>
-    </body>
-    </html>
+
+</body>
 
 @endsection
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding-top: 2.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .hero img {
+            max-width: 30%;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: #0b246e;
+            margin: 0;
+        }
+
+        @media (min-width: 640px) {
+            .hero h1 {
+                font-size: 1.875rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+        }
+
+        .hero p {
+            margin-top: 0.25rem;
+            font-weight: 400;
+            font-size: 1.125rem;
+            color: #2d4db7;
+        }
+
+        /* Therapists Section */
+        .therapists-section {
+            background-color: #b4d0eb;
+            padding-top: 2.5rem;
+            padding-bottom: 2.5rem;
+        }
+
+        .therapists-section h2 {
+            color: #0b246e;
+            font-weight: 800;
+            font-size: 1.25rem;
+            text-align: center;
+            margin: 0 0 2.5rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .therapists-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .therapists-section h2 {
+                font-size: 1.875rem;
+            }
+        }
+
+        .therapists-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .therapists-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .therapists-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            background-color: #fef9f0;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 9999px;
+            object-fit: cover;
+            background-color: #14b8a6;
+        }
+
+        .name {
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: #0b246e;
+            margin: 0;
+        }
+
+        .title {
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: #0b246e;
+            margin: 0;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            color: #6b7280;
+            background-color: #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.125rem 0.5rem;
+            user-select: none;
+        }
+
+        .time,
+        .date,
+        .price-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #0b246e;
+        }
+
+        .date {
+            font-weight: 400;
+            font-size: 0.75rem;
+            margin-top: -0.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .price-group {
+            gap: 0.25rem;
+        }
+
+        .price {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #0b246e;
+        }
+
+        .price-badge {
+            background-color: #0b246e;
+            color: white;
+            font-weight: 600;
+            font-size: 0.625rem;
+            border-radius: 9999px;
+            padding: 0.125rem 0.5rem;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-profile {
+            background-color: #0b246e;
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            flex: 1;
+        }
+
+        .btn-profile:hover {
+            background-color: #0a1d4a;
+        }
+
+        .btn-book {
+            background-color: #d1d9f7;
+            color: #0b246e;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            flex: 1;
+        }
+
+        .btn-book:hover {
+            background-color: #b7c4f5;
+        }
+
+        /* Icons */
+        .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: #0b246e;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-money {
+            width: 16px;
+            height: 16px;
+            fill: #0b246e;
+            margin-right: 0.25rem;
+        }
+    </style>
+</head>
