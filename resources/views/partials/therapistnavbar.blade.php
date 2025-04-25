@@ -11,7 +11,7 @@
             <a href="{{ url('/activities') }}"><div class="nav-item">Activities</div></a>
             <a href="{{ url('/pricing') }}"><div class="nav-item">Pricing</div></a>
             <a href="{{ url('/contact') }}"><div class="nav-item">Contact</div></a>
-            <a href="{{ url('/link') }}"><div class="nav-item">Link</div></a>
+            <a href="{{ url('/assessments') }}"><div class="nav-item">Assessments</div></a>
         </div>
 
         <div class="nav-profile">
