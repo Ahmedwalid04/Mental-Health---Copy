@@ -20,6 +20,8 @@ class TherapistProfile extends Model
         'specializations',
         'profile_image',
     ];
+    protected $casts = [];
+
 
     // Relationship to User
     public function user()

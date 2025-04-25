@@ -1,7 +1,5 @@
 <?php
 
-// app/Models/User.php
-
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -9,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\TherapistProfile;
 
 class User extends Authenticatable
 {
@@ -50,5 +49,41 @@ class User extends Authenticatable
     public function therapistProfile()
     {
         return $this->hasOne(TherapistProfile::class);
+    }
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted()
+    {
+        // Listen for the "created" event
+        static::created(function ($user) {
+            if ($user->role === 'therapist' && !$user->therapistProfile) {
+                TherapistProfile::create([
+                    'user_id' => $user->id,
+                    'bio' => '',
+                    'price_per_half_hour' => 0,
+                    'qualifications' => '',
+                    'experience' => '',
+                    'specializations' => '',
+                    'profile_image' => null,
+                ]);
+            }
+        });
+
+        // Listen for the "updated" event
+        static::updated(function ($user) {
+            if ($user->role === 'therapist' && !$user->therapistProfile) {
+                TherapistProfile::create([
+                    'user_id' => $user->id,
+                    'bio' => '',
+                    'price_per_half_hour' => 0,
+                    'qualifications' => '',
+                    'experience' => '',
+                    'specializations' => '',
+                    'profile_image' => null,
+                ]);
+            }
+        });
     }
 }
