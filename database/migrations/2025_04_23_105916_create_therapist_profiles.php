@@ -15,7 +15,7 @@ class CreateTherapistProfiles extends Migration
         Schema::create('therapist_profiles', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id')->unique(); // One profile per user
+            $table->unsignedBigInteger('user_id')->unique(); // One TProfileController.php per user
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->text('bio')->nullable();

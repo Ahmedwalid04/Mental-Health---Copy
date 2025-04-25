@@ -80,12 +80,12 @@ Route::get('/sessions', function () {
 });
 
 // Profile route
-Route::get('/profile', function () {
+Route::get('/TProfileController.php', function () {
     $user = Auth::user();
     if ($user && $user->role === 'therapist') {
-        return view('therapist.profile');
+        return view('therapist.TProfileController.php');
     }
-    return view('user.profile');
+    return view('user.TProfileController.php');
 });
 
 
@@ -111,3 +111,15 @@ Route::resource('assessments', AssessmentController::class)->except(['show']);
 //Route::get('/assessments', [AssessmentController::class, 'index'])->name('user.assessmentsindex');
 
 
+use App\Http\Controllers\TProfileController;
+
+Route::middleware('auth')->group(function () {
+    // Show profile (display all fields)
+    Route::get('/profile', [TProfileController::class, 'show'])->name('profile.show');
+
+    // Show the form to create or edit profile
+    Route::get('/profile/edit', [TProfileController::class, 'edit'])->name('profile.edit');
+
+    // Handle create or update (same URL, same action)
+    Route::post('/profile/edit', [TProfileController::class, 'save'])->name('profile.save');
+});

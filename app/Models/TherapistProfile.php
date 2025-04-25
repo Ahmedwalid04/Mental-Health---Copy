@@ -24,6 +24,6 @@ class TherapistProfile extends Model
     // Relationship to User
     public function user()
     {
-        return $this->belongsTo(User::class); // A therapist profile belongs to one user
+        return $this->belongsTo(User::class); // A therapist TProfileController.php belongs to one user
     }
 }
