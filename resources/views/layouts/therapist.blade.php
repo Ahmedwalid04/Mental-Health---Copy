@@ -5,12 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'My App')</title>
-
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @yield('styles')
 </head>
 <body>
 
-<link rel="stylesheet" href="{{ asset('css/partials/therapistnavbar.css') }}">
 @include('partials.therapistnavbar') {{-- Reusable navbar --}}
 
 <div class="main-content">

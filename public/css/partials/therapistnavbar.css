@@ -1,8 +1,10 @@
 body {
+
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background-color: #f0f4f8;
     text-align: center;
+
 }
 
 .avatar {
@@ -14,6 +16,7 @@ body {
 }
 
 .navbar {
+
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     background-color: #1e1e1e;
 }
