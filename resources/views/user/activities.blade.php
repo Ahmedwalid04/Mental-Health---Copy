@@ -1,5 +1,5 @@
 {{-- resources/views/home.blade.php --}}
-@extends('layouts.client')
+@extends('layouts.app')
 
 @section('title', 'Activities')
 

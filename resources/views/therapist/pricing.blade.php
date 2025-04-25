@@ -1,5 +1,5 @@
 {{-- resources/views/home.blade.php --}}
-@extends('layouts.client')
+@extends('layouts.therapist')
 
 @section('title', 'Pricing')
 

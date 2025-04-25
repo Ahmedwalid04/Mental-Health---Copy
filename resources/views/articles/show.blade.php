@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.app')
 
 @section('content')
     <div class="article-box" style="padding: 24px;">

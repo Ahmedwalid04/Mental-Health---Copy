@@ -1,15 +1,17 @@
-<!-- resources/views/layouts/client.blade.php -->
+<!-- resources/views/layouts/app.blade.php -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'My App')</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    @yield('styles')
 </head>
 <body>
 
-@include('partials.clientnavbar') {{-- Reusable navbar --}}
+<link rel="stylesheet" href="{{ asset('css/partials/therapistnavbar.css') }}">
+@include('partials.therapistnavbar') {{-- Reusable navbar --}}
 
 <div class="main-content">
     @yield('content') {{-- Dynamic page content --}}

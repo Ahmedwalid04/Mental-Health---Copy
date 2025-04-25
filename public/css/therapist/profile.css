@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    background-color: #add1e6;
+    font-family: 'Inter', sans-serif;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.profile-container {
+    background-color: #fff9f0;
+    max-width: 960px;
+    margin: 0 auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    padding: 32px;
+    position: relative;
+    color: #1e40af;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.edit-btn {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 72px;
+    right: 32px;
+    background-color: #e9eef7;
+    border: none;
+    border-radius: 9999px;
+    padding: 4px 16px;
+    color: #1e40af;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.favorite-btn i {
+    margin-right: 6px;
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+@media (min-width: 640px) {
+    .profile-section {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    min-width: 200px;
+}
+
+@media (min-width: 640px) {
+    .left-column {
+        align-items: flex-start;
+    }
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #ccc;
+}
+
+.therapist-name {
+    font-weight: 600;
+    font-size: 18px;
+    color: #1e40af;
+}
+
+.price-input-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #1e40af;
+    font-size: 14px;
+}
+
+.right-column {
+    flex: 1;
+}
+
+.section {
+    max-width: 600px;
+    margin-bottom: 48px;
+}
+
+.section h3 {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.section p {
+    margin: 4px 0;
+    color: #1e40af;
+    font-size: 14px;
+}
+
+.about-me-textarea {
+    width: 100%;
+    min-height: 80px;
+    border: 1px solid #1e40af;
+    border-radius: 4px;
+    background: transparent;
+    color: #1e40af;
+    font-size: 14px;
+    padding: 8px;
+    resize: none;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+.about-me-textarea::placeholder {
+    color: rgba(30, 64, 175, 0.5);
+}
+
+.specialties-container {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0 8px;
+    justify-content: center;
+}
+
+.specialties-container h3 {
+    width: 100%;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #1e40af;
+}
+
+.specialty-pill {
+    background-color: #e9eef7;
+    color: #1e40af;
+    font-size: 12px;
+    border-radius: 9999px;
+    padding: 4px 12px;
+    user-select: none;
+    cursor: default;
+    white-space: nowrap;
+}
