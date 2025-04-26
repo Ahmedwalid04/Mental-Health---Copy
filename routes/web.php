@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\TProfileController;
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
@@ -32,8 +33,6 @@ Route::get('/activities', function () {
 });
 
 
-
-
 // Contact route
 Route::get('/contact', function () {
     $user = Auth::user();
@@ -43,14 +42,6 @@ Route::get('/contact', function () {
     return view('user.contact');
 });
 
-// Forum route
-Route::get('/forum', function () {
-    $user = Auth::user();
-    if ($user && $user->role === 'therapist') {
-        return view('therapist.forum');
-    }
-    return view('user.forum');
-});
 
 // Link route
 Route::get('/link', function () {
@@ -108,10 +99,6 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.cu
 Route::get('/assessments/result', [AssessmentController::class, 'result'])->name('assessments.result');
 Route::resource('assessments', AssessmentController::class)->except(['show']);
 
-//Route::get('/assessments', [AssessmentController::class, 'index'])->name('user.assessmentsindex');
-
-
-use App\Http\Controllers\TProfileController;
 
 Route::middleware('auth')->group(function () {
     // Show profile (display all fields)
@@ -123,3 +110,16 @@ Route::middleware('auth')->group(function () {
     // Handle create or update (same URL, same action)
     Route::post('/profile/edit', [TProfileController::class, 'save'])->name('profile.save');
 });
+
+// Logout route
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/sessions', [TProfileController::class, 'showAllForSessions'])->name('sessions');
+
+
+use App\Http\Controllers\SessionController;
+
+Route::get('/book-session/{therapist}', [SessionController::class, 'create'])->name('book.session');
+
+// web.php
+Route::get('/therapists/{id}', [TProfileController::class, 'show1'])->name('therapists.show');

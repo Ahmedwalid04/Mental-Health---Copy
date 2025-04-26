@@ -163,7 +163,7 @@
             width: 100%;
             font-weight: 700;
             font-size: 14px;
-            margin-bottom: 8px;
+            margin-left: 110px;
             color: #1e40af;
         }
         .specialty-pill {
@@ -176,6 +176,18 @@
             cursor: default;
             white-space: nowrap;
         }
+        .logout-btn {
+            position: absolute;
+            top: 120px;
+            right: 32px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
     </style>
     <link
         rel="stylesheet"
@@ -184,10 +196,14 @@
 </head>
 <body>
 <div class="container">
-    <button class="edit-btn" type="button">Edit Profile</button>
+    <a href="{{ route('profile.edit') }}">
+        <button class="edit-btn" type="button">Edit Profile</button>
+    </a>
+
     <button class="favorite-btn" aria-label="Favorite toggle" type="button">
         <i class="far fa-star"></i>
     </button>
+
     <div class="profile-section">
         <div class="left-column">
             <img
@@ -209,7 +225,6 @@
                 @endauth
                 <span>/ 30min</span>
             </div>
-
         </div>
         <div class="right-column">
             <div class="section">
@@ -237,9 +252,9 @@
                     readonly
                 >{{ Auth::user()->therapistProfile->bio ?? '' }}</textarea>
             </div>
-
         </div>
     </div>
+
     <div class="specialties-container">
         <h3>Specialties</h3>
         @auth
@@ -248,6 +263,12 @@
             @endforeach
         @endauth
     </div>
+
+    <!-- Logout Button -->
+    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+        @csrf
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
 
 </div>
 </body>

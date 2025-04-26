@@ -28,34 +28,59 @@ class TProfileController extends Controller
     public function save(Request $request)
     {
         Log::info('Form input: ', $request->all());
-    
+
         $data = $request->validate([
             'bio'                  => 'nullable|string',
-            'price_per_half_hour'  => 'nullable|numeric|min:0',
-            'qualifications'       => 'nullable|string',
-            'experience'           => 'nullable|string',
-            'specializations'      => 'nullable|string',
-            'profile_image'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'price_per_half_hour' => 'nullable|numeric|min:0',
+            'qualifications'      => 'nullable|string',
+            'experience'          => 'nullable|string',
+            'specializations'     => 'nullable|string',
+            'profile_image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
-    
-        // Ensure user_id is always set
+
         $data['user_id'] = Auth::id();
-    
+
+        // Convert comma-separated strings to arrays, then encode as JSON
+        $data['qualifications'] = $request->filled('qualifications')
+            ? json_encode(array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', $request->input('qualifications')))))
+            : null;
+
+        $data['experience'] = $request->filled('experience')
+            ? json_encode(array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', $request->input('experience')))))
+            : null;
+
+        $data['specializations'] = $request->filled('specializations')
+            ? json_encode(array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', $request->input('specializations')))))
+            : null;
+
+        // Handle profile image
         if ($request->hasFile('profile_image')) {
             if ($old = TherapistProfile::where('user_id', Auth::id())->value('profile_image')) {
                 Storage::disk('public')->delete($old);
             }
             $data['profile_image'] = $request->file('profile_image')->store('profile_images', 'public');
         }
-    
+
         TherapistProfile::updateOrCreate(
             ['user_id' => Auth::id()],
             $data
         );
-    
+
         return redirect()
-            ->route('profile.edit') // redirect back to the edit page to see changes
+            ->route('profile.show')
             ->with('success', 'Profile saved successfully.');
     }
-    
+
+    public function showAllForSessions()
+    {
+        $therapistProfiles = TherapistProfile::with('user')->get(); // eager load related user
+        return view('user.sessions', compact('therapistProfiles'));
+    }
+
+    public function show1($id)
+    {
+        $therapist = TherapistProfile::with('user')->findOrFail($id); // using profile id
+        return view('user.TProfilePreview', compact('therapist'));
+    }
+
 }

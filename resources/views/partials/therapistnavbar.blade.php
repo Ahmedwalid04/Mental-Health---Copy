@@ -9,10 +9,7 @@
             <a href="{{ url('/home') }}"><div class="nav-item">Home</div></a>
             <a href="{{ url('/sessions') }}"><div class="nav-item">Sessions</div></a>
             <a href="{{ url('/articles') }}"><div class="nav-item">Articles</div></a>
-            <a href="{{ url('/activities') }}"><div class="nav-item">Activities</div></a>
-            <a href="{{ url('/pricing') }}"><div class="nav-item">Pricing</div></a>
             <a href="{{ url('/contact') }}"><div class="nav-item">Contact</div></a>
-            <a href="{{ url('/assessments') }}"><div class="nav-item">Assessments</div></a>
         </div>
 
         <div class="nav-profile">

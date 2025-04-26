@@ -83,4 +83,15 @@ class AuthController extends Controller
 
         return redirect()->back()->with('success', 'Therapist role assigned.');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        // Invalidate and regenerate session to prevent fixation attacks
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');  // or wherever you want to send users after logout
+    }
 }

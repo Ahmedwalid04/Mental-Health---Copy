@@ -232,27 +232,27 @@
     <!-- Qualifications -->
     <div>
         <label>Qualifications (one per line)</label><br>
-        <textarea name="qualifications" rows="3">{{ old('qualifications', $profile->qualifications ?? '') }}</textarea>
+        <textarea name="qualifications" rows="3">{{ old('qualifications', is_array($profile->qualifications ?? null) ? implode("\n", $profile->qualifications) : ($profile->qualifications ?? '')) }}</textarea>
         @error('qualifications')
-            <span style="color: green;">{{ $message }}</span>
+        <span style="color: red;">{{ $message }}</span>
         @enderror
     </div>
 
     <!-- Experience -->
     <div>
         <label>Experience (one per line)</label><br>
-        <textarea name="experience" rows="3">{{ old('experience', $profile->experience ?? '') }}</textarea>
+        <textarea name="experience" rows="3">{{ old('experience', is_array($profile->experience ?? null) ? implode("\n", $profile->experience) : ($profile->experience ?? '')) }}</textarea>
         @error('experience')
-            <span style="color: red;">{{ $message }}</span>
+        <span style="color: red;">{{ $message }}</span>
         @enderror
     </div>
 
     <!-- Specializations -->
     <div>
         <label>Specializations (one per line)</label><br>
-        <textarea name="specializations" rows="3">{{ old('specializations', $profile->specializations ?? '') }}</textarea>
+        <textarea name="specializations" rows="3">{{ old('specializations', is_array($profile->specializations ?? null) ? implode("\n", $profile->specializations) : ($profile->specializations ?? '')) }}</textarea>
         @error('specializations')
-            <span style="color: red;">{{ $message }}</span>
+        <span style="color: red;">{{ $message }}</span>
         @enderror
     </div>
 
