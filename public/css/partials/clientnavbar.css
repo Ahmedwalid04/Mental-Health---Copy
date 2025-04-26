@@ -1,30 +1,44 @@
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f0f4f8;
+    font-family: 'Inter', sans-serif;
+    background-color: #FAE6D9;
     text-align: center;
+    padding-top: 100px; /* Space for fixed navbar */
 }
 
-.avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 9999px;
-    object-fit: cover;
-    background-color: #14b8a6;
-}
-
+/* Navbar */
 .navbar {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: #1e1e1e;
+    position: fixed;
+    top:0;
+    bottom:91%;
+    left: 0;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .nav-container {
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px;
+    padding: 20px 32px;
 }
 
+/* Left Side: Logo */
+.nav-logo {
+    font-weight: 800;
+    font-size: 24px;
+    color: #1A1A1A;
+    text-decoration: none;
+}
+
+/* Middle: Links */
 .nav-links {
     display: flex;
     gap: 24px;
@@ -32,42 +46,57 @@ body {
 }
 
 .nav-item {
-    color: #fff;
-    padding: 8px;
-    border-radius: 4px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
     cursor: pointer;
-    font: 16px "Inter", sans-serif;
     transition: all 0.3s ease;
 }
 
 .nav-item:hover {
-    background-color: #00385e;
+    background-color: #FFE9DC;
+    color: #7C5BFF;
     transform: scale(1.05);
 }
 
+/* Right Side: Profile */
 .nav-profile {
     display: flex;
+    align-items: center;
     gap: 12px;
 }
 
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    object-fit: cover;
+    background-color: #7C5BFF;
+    transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.1);
+}
+
+/* Username */
 .nav-username {
-    padding: 8px;
-    border-radius: 4px;
     background-color: #fff;
-    color: #1e1e1e;
-    font: 16px "Inter", sans-serif;
+    color: #1A1A1A;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 8px;
     transition: all 0.3s ease;
 }
 
 .nav-username:hover {
-    background-color: #00385e;
-    color: #fff;
+    background-color: #EDEBFF;
+    color: #7C5BFF;
     transform: scale(1.05);
-}
-
-.nav-avatar:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
 }
 
 /* Mobile Responsive */
