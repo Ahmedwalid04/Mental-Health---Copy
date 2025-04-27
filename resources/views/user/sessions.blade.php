@@ -216,6 +216,7 @@
             color: white;
             font-weight: 600;
             font-size: 0.875rem;
+            width:150px;
             border: none;
             border-radius: 0.375rem;
             padding: 0.5rem 1rem;
@@ -329,7 +330,7 @@
                     </div>
                     <div class="buttons">
                         <a href="{{ route('therapists.show', $therapist->user->id) }}"
-                           class="btn-profile bg-[#0b246e] text-white font-semibold text-sm rounded-md py-2 px-4 hover:bg-[#0a1d4a] transition-colors"
+                           class="btn-profile"
                            aria-label="View profile of {{ $therapist->user->id }}">
                             View Profile
                         </a>

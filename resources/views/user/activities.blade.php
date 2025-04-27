@@ -26,6 +26,7 @@
             }
             /* Container */
             .container {
+                height: 650px;
                 max-width: 1120px;
                 margin: 0 auto;
                 display: flex;
@@ -302,7 +303,9 @@
             </div>
             <section class="cards" aria-label="Activity cards">
                 <article class="card">
-                    <img src="{{ asset('pics/meditation.jpg') }}" alt="Person meditating in lotus pose with leaves in background illustration" />
+                    <a href="https://youtu.be/JQE-XQkisp8?feature=shared">
+                        <img src="{{ asset('pics/meditation.jpg') }}" alt="Person meditating in lotus pose with leaves in background illustration" />
+                    </a>
                     <h3>Mindfulness Meditation</h3>
                     <p>10-15 minutes</p>
                 </article>

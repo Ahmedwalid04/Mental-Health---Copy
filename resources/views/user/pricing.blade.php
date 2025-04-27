@@ -26,6 +26,7 @@
             margin-bottom: 64px;
             position: relative;
             padding: 80px 16px 40px;
+            background: url('{{ asset("/pics/bg.jpg") }}') no-repeat center center;
             overflow: hidden;
         }
         header::before {
@@ -35,7 +36,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('{{ asset("storage/uploads/Screenshot (37).png") }}') no-repeat center center;
             background-size: cover;
             opacity: 0.15;
             z-index: -1;
