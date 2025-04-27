@@ -7,6 +7,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\TProfileController;
+use App\Http\Controllers\SessionController;
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
@@ -114,10 +115,10 @@ Route::middleware('auth')->group(function () {
 // Logout route
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/sessions', [TProfileController::class, 'showAllForSessions'])->name('sessions');
+Route::get('/Usessions', [TProfileController::class, 'showAllForSessions'])->name('sessions');
 
 
-use App\Http\Controllers\SessionController;
+
 
 Route::get('/book-session/{therapist}', [SessionController::class, 'create'])->name('book.session');
 

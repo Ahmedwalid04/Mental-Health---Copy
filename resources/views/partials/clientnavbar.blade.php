@@ -6,7 +6,7 @@
     <div class="nav-container">
         <div class="nav-links">
             <a href="{{ url('/home') }}"><div class="nav-item">Home</div></a>
-            <a href="{{ url('/sessions') }}"><div class="nav-item">Sessions</div></a>
+            <a href="{{ url('/Usessions') }}"><div class="nav-item">Sessions</div></a>
             <a href="{{ url('/articles') }}"><div class="nav-item">Articles</div></a>
             <a href="{{ url('/activities') }}"><div class="nav-item">Activities</div></a>
             <a href="{{ url('/pricing') }}"><div class="nav-item">Pricing</div></a>
