@@ -6,12 +6,23 @@
     <div class="nav-container">
         <div class="nav-links">
             <a href="{{ url('/home') }}"><div class="nav-item">Home</div></a>
-            <a href="{{ url('/Usessions') }}"><div class="nav-item">Sessions</div></a>
-            <a href="{{ url('/articles') }}"><div class="nav-item">Articles</div></a>
-            <a href="{{ url('/activities') }}"><div class="nav-item">Activities</div></a>
-            <a href="{{ url('/pricing') }}"><div class="nav-item">Pricing</div></a>
-            <a href="{{ url('/contact') }}"><div class="nav-item">Contact</div></a>
-            <a href="{{ url('/assessments') }}"><div class="nav-item">Assessments</div></a>
+
+            @auth
+                @if (Auth::user()->subscription_plan == 'basic')
+                    <a href="{{ url('/articles') }}"><div class="nav-item">Articles</div></a>
+                @elseif (Auth::user()->subscription_plan == 'premium')
+                    <a href="{{ url('/articles') }}"><div class="nav-item">Articles</div></a>
+                    <a href="{{ url('/Usessions') }}"><div class="nav-item">Sessions</div></a>
+                    <a href="{{ url('/assessments') }}"><div class="nav-item">Assessments</div></a>
+                @elseif (Auth::user()->subscription_plan == 'platinum')
+                    <a href="{{ url('/articles') }}"><div class="nav-item">Articles</div></a>
+                    <a href="{{ url('/Usessions') }}"><div class="nav-item">Sessions</div></a>
+                    <a href="{{ url('/assessments') }}"><div class="nav-item">Assessments</div></a>
+                    <a href="{{ url('/pricing') }}"><div class="nav-item">Pricing</div></a>
+                @endif
+            @else
+                <a href="{{ url('/pricing') }}"><div class="nav-item">Pricing</div></a>
+            @endauth
         </div>
 
         <div class="nav-profile">

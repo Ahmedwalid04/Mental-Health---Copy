@@ -253,10 +253,8 @@
         }
 
     </style>
-
     <div class="pricing-container">
         <header>
-
             <img src="{{ asset('pics/pricing.jpg') }}"
                  alt="Silhouette of a head filled with words related to mental health"
                  class="bg-image" width="1920" height="400">
@@ -265,8 +263,8 @@
         </header>
     </div>
 
-        <main>
-            <div class="mains">
+    <main>
+        <div class="mains">
             <section class="plan basic">
                 <h2>Basic Plan</h2>
                 <p class="desc">Perfect for getting started</p>
@@ -290,9 +288,9 @@
                     <li><span class="check"></span> Access to all articles</li>
                     <li><span class="check"></span> 1-on-1 Sessions</li>
                     <li><span class="check"></span> Assessments</li>
-                    <li><span class="check"></span> Activities</li>
+                    <li><span class="times"></span> Activities</li>
                 </ul>
-                <button type="button" class="show-payment-modal">Get Started</button>
+                <button type="button" class="show-payment-modal" data-plan="premium">Get Started</button>
             </section>
 
             <section class="plan platinum">
@@ -301,51 +299,48 @@
                 <p class="price">$49 <span>/month</span></p>
                 <ul>
                     <li><span class="check"></span> Access to all articles</li>
-                    <li><span class="check"></span> Unlimited 1-on-1 Sessions</li>
+                    <li><span class="check"></span> 1-on-1 Sessions</li>
                     <li><span class="check"></span> Advanced Assessments</li>
-                    <li><span class="check"></span> Unlimited Activities</li>
-                    <li><span class="check"></span> Priority Support</li>
+                    <li><span class="check"></span> Activities</li>
                 </ul>
-                <button type="button" class="show-payment-modal">Get Started</button>
+                <button type="button" class="show-payment-modal" data-plan="platinum">Get Started</button>
             </section>
-            </div>
-        </main>
-
-
+        </div>
+    </main>
 
     <!-- Payment Modal -->
-        <div id="payment-modal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">Enter Payment Information</div>
-                <form id="payment-form" method="GET" action="{{ url('/sessions') }}">
-                    @csrf
-                    <div class="form-group">
-                        <label for="card-number">Card Number</label>
-                        <input type="text" id="card-number" name="card_number" placeholder="1234" required>
-                        <div class="error" id="card-number-error"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="expiry-date">Expiry Date</label>
-                        <input type="month" id="expiry-date" name="expiry_date" required>
-                        <div class="error" id="expiry-date-error"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cvv">CVV</label>
-                        <input type="number" id="cvv" name="cvv" placeholder="123" required>
-                        <div class="error" id="cvv-error"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="close">Close</button>
-                        <button type="submit" id="submit-button">Submit Payment</button>
-                    </div>
-                </form>
-            </div>
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Enter Payment Information</div>
+            <form id="payment-form" method="POST" action="{{ url('/subscribe') }}">
+                @csrf
+                <input type="hidden" id="selected-plan" name="plan" value="">
+
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" name="card_number" placeholder="1234" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiry-date">Expiry Date</label>
+                    <input type="month" id="expiry-date" name="expiry_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="number" id="cvv" name="cvv" placeholder="123" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close">Close</button>
+                    <button type="submit" id="submit-button">Submit Payment</button>
+                </div>
+            </form>
         </div>
     </div>
 
     <script>
         document.querySelectorAll('.show-payment-modal').forEach(button => {
             button.addEventListener('click', () => {
+                const plan = button.getAttribute('data-plan');
+                document.getElementById('selected-plan').value = plan;
                 document.getElementById('payment-modal').style.display = 'flex';
             });
         });
@@ -364,28 +359,38 @@
 
             if (!cardNumber.match(/^\d{4,}$/)) {
                 isValid = false;
-                document.getElementById('card-number-error').textContent = "Card number must be at least 4 digits.";
-            } else {
-                document.getElementById('card-number-error').textContent = '';
             }
 
             if (!expiryDate) {
                 isValid = false;
-                document.getElementById('expiry-date-error').textContent = "Please enter expiry date.";
-            } else {
-                document.getElementById('expiry-date-error').textContent = '';
             }
 
             if (!cvv.match(/^\d{3}$/)) {
                 isValid = false;
-                document.getElementById('cvv-error').textContent = "CVV must be exactly 3 digits.";
-            } else {
-                document.getElementById('cvv-error').textContent = '';
             }
 
             if (isValid) {
                 this.submit();
             }
         });
+
+        function updateButtonAfterSubscription(plan) {
+            // Disable the old button and change it to "Get Started"
+            const buttons = document.querySelectorAll('.show-payment-modal');
+            buttons.forEach(button => {
+                if (button.getAttribute('data-plan') === plan) {
+                    button.textContent = 'Subscribed';
+                    button.disabled = true;
+                } else {
+                    button.textContent = 'Get Started';
+                    button.disabled = false;
+                }
+            });
+        }
+
+        // Assuming the backend returns a successful subscription response
+        // Call this function when the user subscribes to a new plan
+        updateButtonAfterSubscription('premium'); // Update the plan dynamically based on backend response
     </script>
+
 @endsection

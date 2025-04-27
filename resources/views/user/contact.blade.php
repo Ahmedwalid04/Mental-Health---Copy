@@ -1,5 +1,5 @@
 {{-- resources/views/home.blade.php --}}
-@extends('layouts.therapist')
+@extends('layouts.app')
 
 @section('title', 'Contact')
 

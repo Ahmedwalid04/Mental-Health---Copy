@@ -117,6 +117,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/Usessions', [TProfileController::class, 'showAllForSessions'])->name('sessions');
 
+use App\Http\Controllers\PricingController;
+
+Route::post('/subscribe', [PricingController::class, 'subscribe'])->middleware('auth');
 
 
 
