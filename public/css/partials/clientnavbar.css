@@ -64,12 +64,15 @@ body {
 
 /* Right Side: Profile */
 .nav-profile {
+
     display: flex;
     align-items: center;
     gap: 12px;
+    margin-left: auto;
 }
 
 .avatar {
+
     width: 32px;
     height: 32px;
     border-radius: 9999px;
@@ -84,6 +87,7 @@ body {
 
 /* Username */
 .nav-username {
+    margin-right: auto;
     background-color: #fff;
     color: #1A1A1A;
     font-weight: 600;

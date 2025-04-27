@@ -310,12 +310,16 @@
                     <p>10-15 minutes</p>
                 </article>
                 <article class="card">
+                <a href="https://youtu.be/exRZtzY3Y-c?si=XZvcoipbioPbBGVy">
                     <img src="{{ asset('pics/creative.jpg') }}" alt="Person writing with music notes and moon illustration" />
+                </a>
                     <h3>Creative Expression (Drawing, Writing, Music)</h3>
                     <p>20-30 minutes</p>
                 </article>
                 <article class="card">
+                <a href="https://youtu.be/exRZtzY3Y-c?si=XZvcoipbioPbBGVy">
                     <img src="{{ asset('pics/journaling.jpg') }}" alt="Hands writing in notebook illustration" />
+                    </a>
                     <h3>Gratitude Journaling</h3>
                     <p>5 minutes</p>
                 </article>
