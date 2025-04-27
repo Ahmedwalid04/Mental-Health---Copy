@@ -14,9 +14,10 @@ body {
 
 .header h1 {
     color: #0f2c67;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 1000;
+    font-size: 20px;
     margin: 0;
+    margin-left: 4px;
 }
 
 .btn {
@@ -53,7 +54,7 @@ body {
 }
 
 .no-articles {
-    color: white;
+    color: #0f2c67;
     font-weight: 600;
     font-size: 12px;
     margin: 0 0 4px 0;

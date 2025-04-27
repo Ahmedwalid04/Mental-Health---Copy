@@ -5,17 +5,15 @@
 @endsection
 
 @section('content')
-    <div class="header">
+   
+<!-- <div class="header">
         <h1>Articles</h1>
-        <a href="{{ route('articles.create') }}" class="btn">Add Article</a>
-    </div>
+    </div> -->
 
     @if($articles->isEmpty())
         <div class="container">
-            <img src="https://placehold.co/240x160/cccccc/757575/png?text=240%C3%97160" alt="Placeholder image"/>
             <p class="no-articles">No articles yet</p>
-            <p class="subtext">Create your first article to get started</p>
-            <a href="{{ route('articles.create') }}" class="btn">Add Article</a>
+
         </div>
     @else
         @foreach($articles as $article)
