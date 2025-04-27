@@ -11,9 +11,8 @@
 @section('content')
     <!-- Hero Section -->
     <section class="hero">
-        <img src="{{ asset('pics/bg.jpg') }}"
-             alt="Silhouette of a head filled with words related to mental health"
-             class="bg-image" width="1920" height="400">
+
+
         <h1>Your Mental Wellness Companion</h1>
         <p>Track, Reflect, and Improve Your Mental Health</p>
     </section>
