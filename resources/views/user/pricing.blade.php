@@ -45,6 +45,7 @@
             z-index: 1;
         }
         h1 {
+            margin-top: 100px;
             font-weight: 900;
             font-size: 36px;
             color: #1A1A1A;

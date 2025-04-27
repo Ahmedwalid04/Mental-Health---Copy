@@ -56,17 +56,17 @@ class AuthController extends Controller
         ]);
 
         // Create TherapistProfile if role is therapist
-        if ($user->role === 'therapist' && !$user->therapistProfile) {
+        /*if ($user->role === 'therapist' && !$user->therapistProfile) {
             TherapistProfile::create([
                 'user_id' => $user->id,
                 'bio' => '',
                 'price_per_half_hour' => 0,
-                'qualifications' => '',
-                'experience' => '',
+                'qualifications' => null,
+                'experience' => null,
                 'specializations' => null,
                 'profile_image' => null,
             ]);
-        }
+        }*/
 
         // Log the user in (optional, remove if you don't want auto-login)
         Auth::login($user);
