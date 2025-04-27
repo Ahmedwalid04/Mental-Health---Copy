@@ -11,7 +11,7 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: white;
+            background-color: #f4f4f4;
             padding: 40px 0;
             min-height: 100vh;
         }
@@ -22,16 +22,17 @@
             padding: 0 16px;
         }
         header {
+            height: 400px;
             text-align: center;
             margin-bottom: 64px;
             position: relative;
             padding: 80px 16px 40px;
-            background: url('{{ asset("/pics/bg.jpg") }}') no-repeat center center;
+            background: #f4f4f4;
             overflow: hidden;
         }
         header::before {
             content: "";
-            position: absolute;
+            position: relative;
             top: 0;
             left: 0;
             width: 100%;
@@ -45,7 +46,8 @@
             z-index: 1;
         }
         h1 {
-            margin-top: 100px;
+
+            margin-top: 205px;
             font-weight: 900;
             font-size: 36px;
             color: #1A1A1A;
@@ -57,6 +59,7 @@
             margin-top: 8px;
         }
         main {
+            background: #f4f4f4;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -229,15 +232,41 @@
                 align-items: center;
             }
         }
+        .bg-image {
+            position: absolute;
+            top: 0;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+        }
+        .mains{
+            background-color: #BAD6EB !important;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding-bottom: 40px;
+            padding-top: 40px;
+            padding-left: 70px;
+        }
+
     </style>
 
     <div class="pricing-container">
         <header>
+
+            <img src="{{ asset('pics/pricing.jpg') }}"
+                 alt="Silhouette of a head filled with words related to mental health"
+                 class="bg-image" width="1920" height="400">
             <h1>Find the Right Plan for Your Mental Wellness</h1>
             <p class="subtitle">Affordable plans tailored to support your well-being</p>
         </header>
+    </div>
 
         <main>
+            <div class="mains">
             <section class="plan basic">
                 <h2>Basic Plan</h2>
                 <p class="desc">Perfect for getting started</p>
@@ -279,9 +308,12 @@
                 </ul>
                 <button type="button" class="show-payment-modal">Get Started</button>
             </section>
+            </div>
         </main>
 
-        <!-- Payment Modal -->
+
+
+    <!-- Payment Modal -->
         <div id="payment-modal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">Enter Payment Information</div>

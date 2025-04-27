@@ -155,8 +155,14 @@
 
 <style>
     .div-46 {
+        position: relative;
+        left: 0px;
+        right: 0px;
+        top: 60px;
+        margin: auto;
+        width: 1350px;
         padding: 32px;
-        background-color: #fff;
+        background-color: #ffffff;
     }
     @media (max-width: 640px) {
         .div-46 {
