@@ -3,370 +3,176 @@
 @section('title', 'Pricing')
 
 @section('content')
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f4f4;
-            padding: 40px 0;
-            min-height: 100vh;
-        }
-        .pricing-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
-        header {
-            height: 400px;
-            text-align: center;
-            margin-bottom: 64px;
-            position: relative;
-            padding: 80px 16px 40px;
-            background: #f4f4f4;
-            overflow: hidden;
-        }
-        header::before {
-            content: "";
-            position: relative;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            opacity: 0.15;
-            z-index: -1;
-        }
-        h1, .subtitle {
-            position: relative;
-            z-index: 1;
-        }
-        h1 {
-
-            margin-top: 205px;
-            font-weight: 900;
-            font-size: 36px;
-            color: #1A1A1A;
-            margin-bottom: 10px;
-        }
-        p.subtitle {
-            font-size: 18px;
-            color: #374151;
-            margin-top: 8px;
-        }
-        main {
-            background: #f4f4f4;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 24px;
-        }
-        section.plan {
-            background: white;
-            border-radius: 20px;
-            padding: 32px 24px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-            width: 320px;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        section.plan:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.12);
-        }
-        section.premium {
-            background: linear-gradient(135deg, #0F172A, #1E293B);
-            color: white;
-        }
-        section.platinum {
-            background: linear-gradient(135deg, #5B4BFF, #7C5BFF);
-            color: white;
-        }
-        h2 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        p.desc {
-            font-size: 16px;
-            color: inherit;
-            margin-bottom: 16px;
-        }
-        p.price {
-            font-size: 30px;
-            font-weight: 800;
-            margin: 20px 0;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 24px;
-            text-align: left;
-        }
-        ul li {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
-            font-size: 15px;
-        }
-        .check::before {
-            content: "✔";
-            color: #10B981;
-            font-weight: bold;
-        }
-        .times::before {
-            content: "✖";
-            color: #EF4444;
-            font-weight: bold;
-        }
-        button {
-            background: #3B82F6;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 12px;
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        button:hover {
-            background: #2563EB;
-            transform: scale(1.05);
-            box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-        }
-        section.basic button {
-            background-color: #F3F4F6;
-            color: #1A1A1A;
-        }
-        section.basic button:hover {
-            background-color: #E5E7EB;
-        }
-        /* Updated Payment Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 50, 0.6);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: linear-gradient(135deg, #3B82F6, #60A5FA);
-            padding: 30px 25px;
-            border-radius: 20px;
-            width: 420px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            color: white;
-            animation: fadeIn 0.5s ease;
-        }
-        .modal-header {
-            font-size: 24px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        input[type="text"], input[type="number"], input[type="month"] {
-            width: 100%;
-            padding: 12px 14px;
-            margin: 10px 0 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            outline: none;
-            background: #EFF6FF;
-            color: #1E293B;
-        }
-        input::placeholder {
-            color: #9CA3AF;
-        }
-        label {
-            font-weight: 600;
-            margin-bottom: 5px;
-            display: block;
-        }
-        .modal-footer {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .modal-footer button {
-            flex: 1;
-            margin: 0 5px;
-            background-color: #1D4ED8;
-            color: white;
-            font-weight: 700;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: background 0.3s;
-            cursor: pointer;
-        }
-        .modal-footer button:hover {
-            background-color: #2563EB;
-        }
-        .error {
-            color: #FECACA;
-            font-size: 13px;
-            margin-top: -15px;
-            margin-bottom: 10px;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8);}
-            to { opacity: 1; transform: scale(1);}
-        }
-        @media (max-width: 768px) {
-            main {
-                flex-direction: column;
-                align-items: center;
+    <html lang="en" class="scroll-smooth" >
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <title>Pricing</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #f4f4f4;
+                padding-bottom: 40px;
+                min-height: 100vh;
             }
-        }
-        .bg-image {
-            position: absolute;
-            top: 0;
-            transform: translateX(-50%);
-            width: 50%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 1;
-        }
-        .mains{
-            background-color: #BAD6EB !important;
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            padding-bottom: 40px;
-            padding-top: 40px;
-            padding-left: 70px;
-        }
+            /* Custom scrollbar for modal */
+            .modal::-webkit-scrollbar {
+                width: 6px;
+            }
+            .modal::-webkit-scrollbar-thumb {
+                background-color: rgba(255 255 255 / 0.3);
+                border-radius: 3px;
+            }
+        </style>
+    </head>
+    <body class="relative">
 
-    </style>
-    <div class="pricing-container">
-        <header>
-            <img src="{{ asset('pics/pricing.jpg') }}"
-                 alt="Silhouette of a head filled with words related to mental health"
-                 class="bg-image" width="1920" height="400">
-            <h1>Find the Right Plan for Your Mental Wellness</h1>
-            <p class="subtitle">Affordable plans tailored to support your well-being</p>
+    <div class="max-w-full mx-auto ">
+        <header class="relative h-[400px] text-center  pt-20 px-4 overflow-hidden bg-gray-100">
+            <img
+                src="{{ asset('pics/pricing.jpg') }}"
+                alt="Silhouette of a head filled with words related to mental health"
+                class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-full object-cover opacity-75 pointer-events-none select-none"
+                width="1920"
+                height="400"
+                aria-hidden="true"
+            />
+            <h1 class="pt-6 relative mt-[205px] font-extrabold text-4xl text-[#1A1A1A] mb-2">
+                Find the Right Plan for Your Mental Wellness
+            </h1>
+            <p class="relative text-lg text-gray-700 mt-2">
+                Affordable plans tailored to support your well-being
+            </p>
         </header>
     </div>
 
-    <main>
-        <div class="mains">
-            <section class="plan basic">
-                <h2>Basic Plan</h2>
-                <p class="desc">Perfect for getting started</p>
-                <p class="price">Free</p>
-                <ul>
-                    <li><span class="check"></span> Access to all articles</li>
-                    <li><span class="times"></span> 1-on-1 Sessions</li>
-                    <li><span class="times"></span> Assessments</li>
-                    <li><span class="times"></span> Activities</li>
-                </ul>
-                <form method="GET" action="{{ url('/articles') }}">
-                    <button type="submit">Get Started</button>
-                </form>
-            </section>
+    <main class="max-w-full mx-auto  grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pb-10 p-10 bg-[#BAD6EB]">
 
-            <section class="plan premium">
-                <h2>Premium Plan</h2>
-                <p class="desc">For serious learners</p>
-                <p class="price">$29 <span>/month</span></p>
-                <ul>
-                    <li><span class="check"></span> Access to all articles</li>
-                    <li><span class="check"></span> 1-on-1 Sessions</li>
-                    <li><span class="check"></span> Assessments</li>
-                    <li><span class="times"></span> Activities</li>
-                </ul>
-                <button type="button" class="show-payment-modal" data-plan="premium">Get Started</button>
-            </section>
+        <!-- Basic Plan -->
+        <section class="bg-white rounded-2xl p-8 shadow-lg flex flex-col transition-transform hover:-translate-y-2 hover:shadow-xl">
+            <h2 class="text-2xl font-bold mb-2 text-[#1A1A1A]">Basic Plan</h2>
+            <p class="text-lg text-gray-700 mb-6">Perfect for getting started</p>
+            <p class="text-4xl font-extrabold mb-8">$0<span class="text-base font-semibold ml-1">Free</span></p>
+            <ul class="mb-8 space-y-3 text-gray-700 text-base">
+                <li class="flex items-center gap-3"><span class="text-green-500 font-bold select-none">✔</span> Access to all articles</li>
+                <li class="flex items-center gap-3"><span class="text-red-500 font-bold select-none">✖</span> 1-on-1 Sessions</li>
+                <li class="flex items-center gap-3"><span class="text-red-500 font-bold select-none">✖</span> Assessments</li>
+                <li class="flex items-center gap-3"><span class="text-red-500 font-bold select-none">✖</span> Activities</li>
+            </ul>
+            <form method="GET" action="{{ url('/articles') }}">
+                <button type="submit" class="w-full bg-gray-200 text-[#1A1A1A] font-semibold py-3 rounded-xl shadow-sm hover:bg-gray-300 transition">
+                    Get Started
+                </button>
+            </form>
+        </section>
 
-            <section class="plan platinum">
-                <h2>Platinum Plan</h2>
-                <p class="desc">Full access to everything</p>
-                <p class="price">$49 <span>/month</span></p>
-                <ul>
-                    <li><span class="check"></span> Access to all articles</li>
-                    <li><span class="check"></span> 1-on-1 Sessions</li>
-                    <li><span class="check"></span> Advanced Assessments</li>
-                    <li><span class="check"></span> Activities</li>
-                </ul>
-                <button type="button" class="show-payment-modal" data-plan="platinum">Get Started</button>
-            </section>
-        </div>
+        <!-- Premium Plan -->
+        <section class="bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-white rounded-2xl p-8 shadow-lg flex flex-col transition-transform hover:-translate-y-2 hover:shadow-xl">
+            <h2 class="text-2xl font-bold mb-2">Premium Plan</h2>
+            <p class="text-lg mb-6">For serious learners</p>
+            <p class="text-4xl font-extrabold mb-8">$29<span class="text-base font-semibold ml-1">/month</span></p>
+            <ul class="mb-8 space-y-3 text-base">
+                <li class="flex items-center gap-3"><span class="text-green-400 font-bold select-none">✔</span> Access to all articles</li>
+                <li class="flex items-center gap-3"><span class="text-green-400 font-bold select-none">✔</span> 1-on-1 Sessions</li>
+                <li class="flex items-center gap-3"><span class="text-green-400 font-bold select-none">✔</span> Assessments</li>
+                <li class="flex items-center gap-3"><span class="text-red-500 font-bold select-none">✖</span> Activities</li>
+            </ul>
+            <button type="button" data-plan="premium" class="show-payment-modal w-full bg-blue-600 hover:bg-blue-700 font-semibold py-3 rounded-xl shadow-lg transition">
+                Get Started
+            </button>
+        </section>
+
+        <!-- Platinum Plan -->
+        <section class="bg-gradient-to-br from-[#5B4BFF] to-[#7C5BFF] text-white rounded-2xl p-8 shadow-lg flex flex-col transition-transform hover:-translate-y-2 hover:shadow-xl">
+            <h2 class="text-2xl font-bold mb-2">Platinum Plan</h2>
+            <p class="text-lg mb-6">Full access to everything</p>
+            <p class="text-4xl font-extrabold mb-8">$49<span class="text-base font-semibold ml-1">/month</span></p>
+            <ul class="mb-8 space-y-3 text-base">
+                <li class="flex items-center gap-3"><span class="text-green-400 font-bold select-none">✔</span> Access to all articles</li>
+                <li class="flex items-center gap-3"><span class="text-green-400 font-bold select-none">✔</span> 1-on-1 Sessions</li>
+                <li class="flex items-center gap-3"><span class="text-green-400 font-bold select-none">✔</span> Advanced Assessments</li>
+                <li class="flex items-center gap-3"><span class="text-green-400 font-bold select-none">✔</span> Activities</li>
+            </ul>
+            <button type="button" data-plan="platinum" class="show-payment-modal w-full bg-blue-600 hover:bg-blue-700 font-semibold py-3 rounded-xl shadow-lg transition">
+                Get Started
+            </button>
+        </section>
     </main>
 
     <!-- Payment Modal -->
-    <div id="payment-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">Enter Payment Information</div>
-            <form id="payment-form" method="POST" action="{{ url('/subscribe') }}">
+    <div id="payment-modal" class="fixed inset-0 hidden z-50 bg-[rgba(0,0,50,0.6)] flex justify-center items-center p-4">
+        <div class="modal-content bg-gradient-to-br from-blue-600 to-blue-400 p-8 rounded-2xl w-full max-w-md shadow-2xl text-white animate-fadeIn">
+            <h3 class="modal-header text-2xl font-extrabold text-center mb-6">Enter Payment Information</h3>
+            <form id="payment-form" method="POST" action="{{ url('/subscribe') }}" class="space-y-4">
                 @csrf
                 <input type="hidden" id="selected-plan" name="plan" value="">
 
-                <div class="form-group">
-                    <label for="card-number">Card Number</label>
-                    <input type="text" id="card-number" name="card_number" placeholder="1234" required>
+                <div>
+                    <label for="card-number" class="block font-semibold mb-1">Card Number</label>
+                    <input type="text" id="card-number" name="card_number" placeholder="1234" required
+                           class="w-full rounded-xl px-4 py-3 text-gray-900 text-lg outline-none focus:ring-2 focus:ring-blue-300"/>
                 </div>
-                <div class="form-group">
-                    <label for="expiry-date">Expiry Date</label>
-                    <input type="month" id="expiry-date" name="expiry_date" required>
+                <div>
+                    <label for="expiry-date" class="block font-semibold mb-1">Expiry Date</label>
+                    <input type="month" id="expiry-date" name="expiry_date" required
+                           class="w-full rounded-xl px-4 py-3 text-gray-900 text-lg outline-none focus:ring-2 focus:ring-blue-300"/>
                 </div>
-                <div class="form-group">
-                    <label for="cvv">CVV</label>
-                    <input type="number" id="cvv" name="cvv" placeholder="123" required>
+                <div>
+                    <label for="cvv" class="block font-semibold mb-1">CVV</label>
+                    <input type="number" id="cvv" name="cvv" placeholder="123" required
+                           class="w-full rounded-xl px-4 py-3 text-gray-900 text-lg outline-none focus:ring-2 focus:ring-blue-300"/>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="close">Close</button>
-                    <button type="submit" id="submit-button">Submit Payment</button>
+                <div class="modal-footer flex gap-4 mt-6">
+                    <button type="button" class="close flex-1 bg-blue-800 hover:bg-blue-900 rounded-xl py-3 font-bold transition">
+                        Close
+                    </button>
+                    <button type="submit" id="submit-button" class="flex-1 bg-blue-500 hover:bg-blue-600 rounded-xl py-3 font-bold transition">
+                        Submit Payment
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
+        // Show modal and set plan
         document.querySelectorAll('.show-payment-modal').forEach(button => {
             button.addEventListener('click', () => {
                 const plan = button.getAttribute('data-plan');
                 document.getElementById('selected-plan').value = plan;
-                document.getElementById('payment-modal').style.display = 'flex';
+                document.getElementById('payment-modal').classList.remove('hidden');
             });
         });
 
+        // Close modal
         document.querySelector('.close').addEventListener('click', () => {
-            document.getElementById('payment-modal').style.display = 'none';
+            document.getElementById('payment-modal').classList.add('hidden');
         });
 
+        // Form validation and submit
         document.getElementById('payment-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
             let isValid = true;
-            const cardNumber = document.getElementById('card-number').value;
-            const expiryDate = document.getElementById('expiry-date').value;
-            const cvv = document.getElementById('cvv').value;
+            const cardNumber = document.getElementById('card-number').value.trim();
+            const expiryDate = document.getElementById('expiry-date').value.trim();
+            const cvv = document.getElementById('cvv').value.trim();
 
-            if (!cardNumber.match(/^\d{4,}$/)) {
+            if (!/^\d{4,}$/.test(cardNumber)) {
                 isValid = false;
+                alert('Please enter a valid card number (at least 4 digits).');
             }
 
             if (!expiryDate) {
                 isValid = false;
+                alert('Please enter a valid expiry date.');
             }
 
-            if (!cvv.match(/^\d{3}$/)) {
+            if (!/^\d{3}$/.test(cvv)) {
                 isValid = false;
+                alert('Please enter a valid 3-digit CVV.');
             }
 
             if (isValid) {
@@ -374,23 +180,26 @@
             }
         });
 
+        // Update buttons after subscription (example usage)
         function updateButtonAfterSubscription(plan) {
-            // Disable the old button and change it to "Get Started"
             const buttons = document.querySelectorAll('.show-payment-modal');
             buttons.forEach(button => {
                 if (button.getAttribute('data-plan') === plan) {
                     button.textContent = 'Subscribed';
                     button.disabled = true;
+                    button.classList.add('opacity-50', 'cursor-not-allowed');
                 } else {
                     button.textContent = 'Get Started';
                     button.disabled = false;
+                    button.classList.remove('opacity-50', 'cursor-not-allowed');
                 }
             });
         }
 
-        // Assuming the backend returns a successful subscription response
-        // Call this function when the user subscribes to a new plan
-        updateButtonAfterSubscription('premium'); // Update the plan dynamically based on backend response
+        // Example call (remove or update based on backend response)
+        // updateButtonAfterSubscription('premium');
     </script>
 
+    </body>
+    </html>
 @endsection
