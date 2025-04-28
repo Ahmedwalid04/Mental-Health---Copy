@@ -69,4 +69,4 @@ class TProfileController extends Controller
                 $therapist = TherapistProfile::with('user')->findOrFail($id); // using profile id
                 return view('user.TProfilePreview', compact('therapist'));
             }
-    }
+        }
