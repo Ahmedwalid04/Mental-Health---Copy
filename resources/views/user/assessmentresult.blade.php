@@ -2,7 +2,7 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/user/assessmentresult.css') }}">
-
+<div class =main>
     <div class="assessment-wrapper">
         <h1>Assessment Results</h1>
         <p>{{ $summary ?? 'No summary available.' }}</p>
@@ -19,4 +19,5 @@
             <span>Secure & Encrypted Assessment</span>
         </div>
     </div>
+</div>
 @endsection

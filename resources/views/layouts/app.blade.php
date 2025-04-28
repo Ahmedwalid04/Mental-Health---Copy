@@ -10,7 +10,6 @@
 
 </head>
 <body>
-<link rel="stylesheet" href="{{ asset('css/partials/clientnavbar.css') }}">
 @include('partials.clientnavbar') {{-- Reusable navbar --}}
 
 <div class="main-content">
