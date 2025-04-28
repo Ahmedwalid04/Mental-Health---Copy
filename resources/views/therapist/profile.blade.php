@@ -353,17 +353,15 @@
             <div class="section" aria-labelledby="qualifications-title">
                 <h3 id="qualifications-title"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Qualifications</h3>
                 @auth
-                    @foreach(json_decode(Auth::user()->therapistProfile->qualifications ?? '[]') as $qualification)
-                        <p>{{ $qualification }}</p>
-                    @endforeach
+                <p>{{ Auth::user()->therapistProfile->qualifications ?? 'No qualifications listed.' }}</p>
                 @endauth
             </div>
             <div class="section" aria-labelledby="experience-title">
                 <h3 id="experience-title"><i class="fas fa-briefcase" aria-hidden="true"></i> Experience</h3>
                 @auth
-                    @foreach(json_decode(Auth::user()->therapistProfile->experience ?? '[]') as $exp)
-                        <p>{{ $exp }}</p>
-                    @endforeach
+                <p>{{ Auth::user()->therapistProfile->experience ?? 'No experience listed.' }}</p>
+
+                    
                 @endauth
             </div>
 
@@ -382,9 +380,7 @@
     <div class="specialties-container" aria-label="Specialties">
         <h3>Specialties</h3>
         @auth
-            @foreach(json_decode(Auth::user()->therapistProfile->specializations ?? '[]') as $specialty)
-                <span class="specialty-pill" tabindex="0">{{ $specialty }}</span>
-            @endforeach
+        <p>{{ Auth::user()->therapistProfile->specializations ?? 'No specialties listed.' }}</p>
         @endauth
     </div>
 
