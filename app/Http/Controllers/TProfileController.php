@@ -57,5 +57,16 @@ class TProfileController extends Controller
             ->route('profile.edit') // redirect back to the edit page to see changes
             ->with('success', 'Profile saved successfully.');
     }
-    
-}
+
+          public function showAllForSessions()
+            {
+                $therapistProfiles = TherapistProfile::with('user')->get(); // eager load related user
+                return view('user.sessions', compact('therapistProfiles'));
+            }
+        
+            public function show1($id)
+            {
+                $therapist = TherapistProfile::with('user')->findOrFail($id); // using profile id
+                return view('user.TProfilePreview', compact('therapist'));
+            }
+    }
