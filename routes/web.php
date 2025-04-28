@@ -126,7 +126,7 @@ Route::get('/Usessions', [TProfileController::class, 'showAllForSessions'])->nam
 Route::get('/sessions', [ConsultationController::class, 'sessions'])->name('therapist.sessions');
 Route::post('/sessions', [ConsultationController::class, 'sessions'])->name('therapist.sessions');
 Route::get('/sessions/upcoming', [ConsultationController::class, 'sessions'])->name('sessions.upcoming');
-Route::get('/sessions/completed', [ConsultationController::class, 'Csessions'])->name('sessions.completed');
+Route::get('/sessions/completed', [ConsultationController::class, 'csessions'])->name('sessions.completed');
 Route::post('/conference/{consultationId}', [ConsultationController::class, 'conference']);
 Route::get('/book-therapist/{therapist}', [ConsultationController::class, 'bookTherapist'])->name('book.therapist');
 Route::get('/conference', [ConsultationController::class, 'conference'])->name('therapist.conference');
