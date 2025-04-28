@@ -3,49 +3,139 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\subscriptions;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\subscriptions;
 
 class PricingController extends Controller
 {
-    public function subscribe(Request $request)
+    /**
+     * Save or update subscription in the database.
+     */
+    public function store(Request $request)
     {
-        // Validate the payment form data
-        $validated = $request->validate([
-            'plan' => 'required|in:basic,premium,platinum',
-            'card_number' => 'required|string',
+        $request->validate([
+            'card_number' => 'required|numeric|min:1000',
             'expiry_date' => 'required|date_format:Y-m',
-            'cvv' => 'required|string',
+            'cvv' => 'required|digits:3',
+            'plan' => 'required|in:basic,premium,platinum',
         ]);
 
-        $user = auth()->user(); // Get the authenticated user
+        $userId = Auth::id();
 
-        // Find the existing active subscription
-        $existingSubscription = subscriptions::where('user_id', $user->id)
-            ->whereNull('end_date') // Assuming the subscription is ongoing if end_date is null
-            ->first();
+        $subscription = subscriptions::where('user_id', $userId)->first();
 
-        if ($existingSubscription) {
-            // Update the existing subscription with the new plan
-            $existingSubscription->plan = $validated['plan'];
-            $existingSubscription->start_date = now();  // Update start date
-            $existingSubscription->end_date = null;     // Ongoing plan, no end date yet
-            $existingSubscription->save();  // Save the updated subscription
-        } else {
-            // If no active subscription exists, create a new one (if needed)
-            subscriptions::create([
-                'user_id' => $user->id,
-                'plan' => $validated['plan'],
+        if ($subscription) {
+            // Update existing subscription
+            $subscription->update([
+                'plan' => $request->plan,
                 'start_date' => now(),
-                'end_date' => null, // Ongoing plan, no end date yet
+                'end_date' => now()->addMonth(),
             ]);
+
+            $message = 'Subscription updated successfully!';
+        } else {
+            // Create new subscription
+            subscriptions::create([
+                'user_id' => $userId,
+                'plan' => $request->plan,
+                'start_date' => now(),
+                'end_date' => now()->addMonth(),
+            ]);
+
+            $message = 'Subscription created successfully!';
         }
 
-        // Return a response indicating successful subscription and plan update
-        return response()->json([
-            'message' => 'Successfully updated your subscription to ' . $validated['plan'] . ' plan',
-            'plan' => $validated['plan'],  // Send back the updated plan to use for frontend changes
+        return redirect()->back()->with('success', $message);
+    }
+
+    /**
+     * Update only the user's subscription plan.
+     */
+    public function update(Request $request)
+    {
+        $request->validate([
+            'plan' => 'required|in:basic,premium,platinum',
+        ]);
+
+        $subscription = subscriptions::where('user_id', Auth::id())->first();
+
+        if ($subscription) {
+            $subscription->update([
+                'plan' => $request->plan,
+                'start_date' => now(),
+                'end_date' => now()->addMonth(),
+            ]);
+
+            return redirect()->back()->with('success', 'Subscription updated successfully!');
+        }
+
+        return redirect()->back()->with('error', 'No subscription found to update.');
+    }
+
+    public function index()
+    {
+        $plans = [
+            [
+                'plan' => 'basic',
+                'title' => 'Basic',
+                'price' => 0,
+                'period' => '/month',
+                'bg' => 'bg-white',
+                'text' => 'text-gray-900',
+                'features' => [
+                    '✔ Access to free articles',
+                    '✔ Community support',
+                    '✖ Personalized coaching',
+                    '✖ Advanced analytics',
+                ],
+            ],
+            [
+                'plan' => 'premium',
+                'title' => 'Premium',
+                'price' => 29,
+                'period' => '/month',
+                'bg' => 'bg-indigo-600',
+                'text' => 'text-white',
+                'features' => [
+                    '✔ Access to all articles',
+                    '✔ Priority support',
+                    '✔ Personalized coaching',
+                    '✖ Advanced analytics',
+                ],
+            ],
+            [
+                'plan' => 'platinum',
+                'title' => 'Platinum',
+                'price' => 59,
+                'period' => '/month',
+                'bg' => 'bg-emerald-600',
+                'text' => 'text-white',
+                'features' => [
+                    '✔ Access to all articles',
+                    '✔ Priority support',
+                    '✔ Personalized coaching',
+                    '✔ Advanced analytics',
+                ],
+            ],
+        ];
+
+        return view('user.pricing', compact('plans'));
+    }
+
+    public function showPricingPage()
+    {
+        $user = auth()->user();
+
+        // جلب اشتراك المستخدم من جدول subscriptions
+        $subscription = subscriptions::where('user_id', $user->id)
+            ->latest('created_at') // تجلب أحدث اشتراك حسب تاريخ الإنشاء
+            ->first();
+
+        $plan = $subscription ? $subscription->plan : null; // لو لم يجد اشتراك يرجع null
+
+        return view('user.pricing', [
+            'subscription' => $plan, // نرسل الخطة للاستخدام داخل Blade
         ]);
     }
+
 }

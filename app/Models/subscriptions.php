@@ -12,6 +12,7 @@ class subscriptions extends Model
 
     // Allow mass-assignment for these fields
     protected $fillable = [
+        'id',
         'user_id',
         'plan',
         'start_date',
@@ -26,4 +27,5 @@ class subscriptions extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

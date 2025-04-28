@@ -63,6 +63,8 @@ Route::get('/pricing', function () {
     }
     return view('user.pricing');
 });
+Route::post('/subscribe', [PricingController::class, 'store'])->name('subscription.store');
+
 
 // Sessions route
 Route::get('/sessions', function () {
@@ -117,9 +119,11 @@ Route::middleware('auth')->group(function () {
 // Logout route
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
+Route::get('/pricing', [PricingController::class, 'showPricingPage'])->name('pricing');
 
 
-Route::post('/subscribe', [PricingController::class, 'subscribe'])->middleware('auth');
+Route::post('/subscribe', [PricingController::class, 'store'])->name('subscription.store');
 
 Route::match(['get', 'post'], '/conference/{consultationId}', [ConsultationController::class, 'conference']);
 Route::get('/Usessions', [TProfileController::class, 'showAllForSessions'])->name('sessions');

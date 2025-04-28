@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\TherapistProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -26,7 +27,7 @@ class AuthController extends Controller
             // Log the user in
             Auth::login($user);
 
-            // Redirect to home with a success message
+            // Redirect to home
             return redirect()->to('/home');
         }
 
@@ -46,7 +47,7 @@ class AuthController extends Controller
             'password' => 'required|confirmed|min:6',
         ]);
 
-        // Create new user
+        // Create the user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -55,8 +56,17 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Create TherapistProfile if role is therapist
-        /*if ($user->role === 'therapist' && !$user->therapistProfile) {
+        // Assign Basic Plan subscription
+        DB::table('subscriptions')->insert([
+            'user_id' => $user->id,
+            'plan' => 'basic',
+            'start_date' => now(),
+            'end_date' => null, // No end date for free plan
+        ]);
+
+        // Optional: If the user is a therapist, create a therapist profile
+        /*
+        if ($user->role === 'therapist' && !$user->therapistProfile) {
             TherapistProfile::create([
                 'user_id' => $user->id,
                 'bio' => '',
@@ -66,32 +76,35 @@ class AuthController extends Controller
                 'specializations' => null,
                 'profile_image' => null,
             ]);
-        }*/
+        }
+        */
 
-        // Log the user in (optional, remove if you don't want auto-login)
+        // Auto-login
         Auth::login($user);
 
-        // Redirect after successful registration
-        return redirect()->to('home')->with('success', 'Registration successful!');
+        // Redirect to pricing page
+        return redirect()->to('pricing');
     }
 
+    // Assign therapist role
     public function assignTherapistRole(Request $request, $userId)
     {
         $user = User::findOrFail($userId);
         $user->role = 'therapist';
-        $user->save(); // This triggers the updated event
+        $user->save();
 
         return redirect()->back()->with('success', 'Therapist role assigned.');
     }
 
+    // LOGOUT METHOD
     public function logout(Request $request)
     {
         Auth::logout();
 
-        // Invalidate and regenerate session to prevent fixation attacks
+        // Invalidate and regenerate session
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');  // or wherever you want to send users after logout
+        return redirect('/');
     }
 }
