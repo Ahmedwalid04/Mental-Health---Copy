@@ -12,15 +12,23 @@ class ConsultationController extends Controller
     public function bookTherapist($therapistId)
     {
         $user = Auth::user(); // the logged-in patient
-
+    
+        // Generate a random unique integer for session_id
+        do {
+            $sessionId = random_int(100000, 999999); // 6-digit random number
+        } while (Consultation::where('session_id', $sessionId)->exists());
+    
         // Create a new consultation
         $consultation = Consultation::create([
             'patient_id' => $user->id,
             'therapist_id' => $therapistId,
+            'session_id' => $sessionId, // <-- set integer session_id
         ]);
-
+    
         return redirect()->back()->with('success', 'Therapist booked successfully!');
     }
+    
+    
 
     public function sessions()
     {

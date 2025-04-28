@@ -15,8 +15,9 @@ class Consultation extends Model
         'scheduled_at',
         'status',
         'notes',
+        'session_id', 
     ];
-
+    
     // Relationships
 
     public function patient()
