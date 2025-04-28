@@ -7,7 +7,9 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\TProfileController;
-use App\Http\Controllers\SessionController;
+use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\PricingController;
+
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
@@ -115,15 +117,21 @@ Route::middleware('auth')->group(function () {
 // Logout route
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/Usessions', [TProfileController::class, 'showAllForSessions'])->name('sessions');
 
-use App\Http\Controllers\PricingController;
 
 Route::post('/subscribe', [PricingController::class, 'subscribe'])->middleware('auth');
 
-
-
-Route::get('/book-session/{therapist}', [SessionController::class, 'create'])->name('book.session');
+Route::match(['get', 'post'], '/conference/{consultationId}', [ConsultationController::class, 'conference']);
+Route::get('/Usessions', [TProfileController::class, 'showAllForSessions'])->name('sessions');
+Route::get('/sessions', [ConsultationController::class, 'sessions'])->name('therapist.sessions');
+Route::post('/sessions', [ConsultationController::class, 'sessions'])->name('therapist.sessions');
+Route::get('/sessions/upcoming', [ConsultationController::class, 'sessions'])->name('sessions.upcoming');
+Route::get('/sessions/completed', [ConsultationController::class, 'Csessions'])->name('sessions.completed');
+Route::post('/conference/{consultationId}', [ConsultationController::class, 'conference']);
+Route::get('/book-therapist/{therapist}', [ConsultationController::class, 'bookTherapist'])->name('book.therapist');
+Route::get('/conference', [ConsultationController::class, 'conference'])->name('therapist.conference');
+Route::post('/conference', [ConsultationController::class, 'conference'])->name('therapist.conference');
+Route::post('/conference/endCall/{conference}', [ConsultationController::class, 'endCall'])->name('therapist.conference.endCall');
 
 // web.php
 Route::get('/therapists/{id}', [TProfileController::class, 'show1'])->name('therapists.show');

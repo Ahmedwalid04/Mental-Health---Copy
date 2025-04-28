@@ -7,98 +7,83 @@
 
     <div class="container" role="main">
         <div class="btn-group" role="tablist" aria-label="Session categories">
-            <button id="btnUpcoming" class="btn-upcoming btn-active" role="tab" aria-selected="true" aria-controls="sessionsList" tabindex="0">Upcoming Sessions</button>
-            <button id="btnCompleted" class="btn-completed btn-inactive" role="tab" aria-selected="false" aria-controls="sessionsList" tabindex="-1">Completed Sessions</button>
+            <a href="{{ route('sessions.upcoming') }}">
+                <button id="btnUpcoming" class="btn-upcoming btn-active" role="tab" aria-selected="true" aria-controls="sessionsList" tabindex="0">
+                    Upcoming Sessions
+                </button>
+            </a>
+            <a href="{{ route('sessions.completed') }}">
+                <button id="btnCompleted" class="btn-completed btn-inactive" role="tab" aria-selected="false" aria-controls="sessionsList" tabindex="-1">
+                    Completed Sessions
+                </button>
+            </a>
         </div>
 
         <div id="sessionsList" aria-live="polite" aria-atomic="true">
-            <!-- Session cards inserted here dynamically -->
+            @foreach ($sessions as $session)
+                <section class="session-card" aria-label="Session with {{ $session->patient->name }}">
+                    <div class="session-info">
+                        <p class="session-name">{{ $session->patient->name }}</p>
+                        <div class="session-details">
+                            <span>{{ \Carbon\Carbon::parse($session->scheduled_at)->format('Y-m-d h:i A') }}</span>
+                            <span class="duration-badge">{{ $session->duration ?? '60min' }}</span> <!-- fallback if no duration -->
+                        </div>
+                    </div>
+                    <div class="session-actions">
+                        <!-- Button to open the modal -->
+                        <button class="btn-notes" type="button" aria-label="View session notes">Session Notes</button>
+
+                        <!-- The Modal -->
+                        <div id="notesModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close-btn" aria-label="Close modal">&times;</span>
+                                <h2>Session Notes</h2>
+                                <p id="sessionNotes">No notes available yet.</p>
+                            </div>
+                        </div>
+
+                        <!-- Show Start Session button only if the session is not completed -->
+                        @if($session->status !== 'completed')
+                            <a href="/conference">
+                                <button class="btn-start" type="button" aria-label="Start session with {{ $session->patient->name }}">
+                                    Start Session
+                                </button>
+                            </a>
+                        @endif
+                    </div>
+                </section>
+            @endforeach
         </div>
+
     </div>
-
     <script>
-        const sessions = {
-            upcoming: [
-                { id: 1, name: "Sarah Johnson", datetime: "2024-01-20 10:00 AM", duration: "60min" },
-                { id: 2, name: "Michael Chen", datetime: "2024-01-20 11:30 AM", duration: "30min" },
-                { id: 3, name: "Emma Davis", datetime: "2024-01-20 2:00 PM", duration: "60min" }
-            ],
-            completed: [
-                { id: 4, name: "Olivia Brown", datetime: "2023-12-15 9:00 AM", duration: "45min" },
-                { id: 5, name: "Liam Wilson", datetime: "2023-12-14 3:30 PM", duration: "30min" },
-                { id: 6, name: "Sophia Martinez", datetime: "2023-12-13 1:00 PM", duration: "60min" }
-            ]
-        };
+        // Get the modal and elements
+        var modal = document.getElementById("notesModal");
+        var btn = document.querySelector(".btn-notes");
+        var span = document.querySelector(".close-btn");
 
-        const btnUpcoming = document.getElementById('btnUpcoming');
-        const btnCompleted = document.getElementById('btnCompleted');
-        const sessionsList = document.getElementById('sessionsList');
-
-        function clearSessions() {
-            sessionsList.innerHTML = '';
+        // Open the modal when the button is clicked
+        btn.onclick = function() {
+            modal.style.display = "block";
+            document.getElementById("sessionNotes").textContent = "{{ $session->notes ?? 'No notes available.' }}";
         }
 
-        function createSessionCard(session) {
-            const card = document.createElement('section');
-            card.className = 'session-card';
-            card.setAttribute('aria-label', `Session with ${session.name}`);
-
-            const infoDiv = document.createElement('div');
-            infoDiv.className = 'session-info';
-
-            const nameP = document.createElement('p');
-            nameP.className = 'session-name';
-            nameP.textContent = session.name;
-
-            const detailsDiv = document.createElement('div');
-            detailsDiv.className = 'session-details';
-
-            const datetimeSpan = document.createElement('span');
-            datetimeSpan.textContent = session.datetime;
-
-            const durationSpan = document.createElement('span');
-            durationSpan.className = 'duration-badge';
-            durationSpan.textContent = session.duration;
-
-            detailsDiv.appendChild(datetimeSpan);
-            detailsDiv.appendChild(durationSpan);
-
-            infoDiv.appendChild(nameP);
-            infoDiv.appendChild(detailsDiv);
-
-            const actionsDiv = document.createElement('div');
-            actionsDiv.className = 'session-actions';
-
-            const notesBtn = document.createElement('button');
-            notesBtn.className = 'btn-notes';
-            notesBtn.type = 'button';
-            notesBtn.textContent = 'Session Notes';
-            notesBtn.setAttribute('aria-label', `View session notes for ${session.name}`);
-
-            const startBtn = document.createElement('button');
-            startBtn.className = 'btn-start';
-            startBtn.type = 'button';
-            startBtn.textContent = 'Start Session';
-            startBtn.setAttribute('aria-label', `Start session with ${session.name}`);
-
-            actionsDiv.appendChild(notesBtn);
-            actionsDiv.appendChild(startBtn);
-
-            card.appendChild(infoDiv);
-            card.appendChild(actionsDiv);
-
-            return card;
+        // Close the modal when the close button is clicked
+        span.onclick = function() {
+            modal.style.display = "none";
         }
 
-        function renderSessions(type) {
-            clearSessions();
-            sessions[type].forEach(session => {
-                const card = createSessionCard(session);
-                sessionsList.appendChild(card);
-            });
+        // Close the modal when the user clicks anywhere outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
 
         function setActiveTab(active) {
+            const btnUpcoming = document.getElementById('btnUpcoming');
+            const btnCompleted = document.getElementById('btnCompleted');
+
             if (active === 'upcoming') {
                 btnUpcoming.classList.add('btn-active');
                 btnUpcoming.classList.remove('btn-inactive');
@@ -122,19 +107,14 @@
             }
         }
 
-        btnUpcoming.addEventListener('click', () => {
-            setActiveTab('upcoming');
-            renderSessions('upcoming');
-        });
-
-        btnCompleted.addEventListener('click', () => {
-            setActiveTab('completed');
-            renderSessions('completed');
-        });
-
-        // Initial render
-        renderSessions('upcoming');
+        // Initial state based on URL (you can modify the logic based on your specific requirements)
+        window.onload = function() {
+            const currentPath = window.location.pathname;
+            if (currentPath.includes('completed')) {
+                setActiveTab('completed');
+            } else {
+                setActiveTab('upcoming');
+            }
+        }
     </script>
-
-
 @endsection

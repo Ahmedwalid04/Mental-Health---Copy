@@ -334,7 +334,7 @@
                            aria-label="View profile of {{ $therapist->user->id }}">
                             View Profile
                         </a>
-                        <a href="{{ route('book.session', $therapist->user_id) }}" class="btn-book" aria-label="Book a session with {{ $therapist->user->name }}">Book Now</a>
+                        <a href="{{ route('book.therapist', $therapist->user_id) }}" class="btn-book" aria-label="Book a session with {{ $therapist->user->name }}">Book Now</a>
                     </div>
                 </article>
             @endforeach
