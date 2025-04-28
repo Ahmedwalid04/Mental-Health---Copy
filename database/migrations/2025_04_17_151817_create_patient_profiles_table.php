@@ -16,11 +16,13 @@ class CreatePatientProfilesTable extends Migration
         Schema::create('patient_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->date('birthdate')->nullable();
-            $table->enum('gender', ['male', 'female', 'non-binary', 'other'])->nullable();
+            $table->string('name');
+            $table->integer('age');
+            $table->integer('score')->nullable(); // in case some patients don't have an assessment yet
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

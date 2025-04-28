@@ -8,16 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\TherapistProfile;
+use App\Models\PatientProfile;
+use App\Models\Assessment;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
@@ -26,29 +23,29 @@ class User extends Authenticatable
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    // Relationship to TherapistProfile (one-to-one)
+    // Relationships
     public function therapistProfile()
     {
         return $this->hasOne(TherapistProfile::class);
+    }
+
+    public function patientProfile()
+    {
+        return $this->hasOne(PatientProfile::class);
+    }
+
+    public function assessments()
+    {
+        return $this->hasMany(Assessment::class);
     }
 
     /**
@@ -56,7 +53,6 @@ class User extends Authenticatable
      */
     protected static function booted()
     {
-        // Listen for the "created" event
         static::created(function ($user) {
             if ($user->role === 'therapist' && !$user->therapistProfile) {
                 TherapistProfile::create([
@@ -69,9 +65,19 @@ class User extends Authenticatable
                     'profile_image' => null,
                 ]);
             }
+
+            if ($user->role === 'patient' && !$user->patientProfile) {
+                $assessment = $user->assessments()->latest()->first();
+
+                PatientProfile::create([
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'age' => $user->age,
+                    'score' => $assessment ? $assessment->score : 0,
+                ]);
+            }
         });
 
-        // Listen for the "updated" event
         static::updated(function ($user) {
             if ($user->role === 'therapist' && !$user->therapistProfile) {
                 TherapistProfile::create([
@@ -82,6 +88,17 @@ class User extends Authenticatable
                     'experience' => '',
                     'specializations' => '',
                     'profile_image' => null,
+                ]);
+            }
+
+            if ($user->role === 'patient' && !$user->patientProfile) {
+                $assessment = $user->assessments()->latest()->first();
+
+                PatientProfile::create([
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'age' => $user->age,
+                    'score' => $assessment ? $assessment->score : null,
                 ]);
             }
         });

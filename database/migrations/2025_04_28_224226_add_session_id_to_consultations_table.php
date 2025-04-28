@@ -20,6 +20,7 @@ class CreateConsultationsTable extends Migration
             $table->timestamp('scheduled_at');
             $table->enum('status', ['scheduled', 'completed', 'cancelled']);
             $table->text('notes')->nullable();
+            $table->unsignedBigInteger('session_id')->nullable()->unique();
             $table->timestamps();
         });
         
