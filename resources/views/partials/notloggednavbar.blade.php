@@ -50,7 +50,7 @@
                    class="px-4 py-2 rounded-md text-white hover:bg-white hover:text-indigo-600 font-semibold text-base transition cursor-pointer">
                     Sign In
                 </a>
-                <a onclick="showLogin()"
+                <a onclick="showRegister()"
                    class="px-4 py-2 rounded-md text-white hover:bg-white hover:text-indigo-600 font-semibold text-base transition cursor-pointer">
                     Sign Up
                 </a>
