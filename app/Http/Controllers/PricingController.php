@@ -131,7 +131,7 @@ class PricingController extends Controller
             ->latest('created_at') // تجلب أحدث اشتراك حسب تاريخ الإنشاء
             ->first();
 
-        $plan = $subscription ? $subscription->plan : null; // لو لم يجد اشتراك يرجع null
+        $plan = $subscription ? $subscription->plan : null;
 
         return view('user.pricing', [
             'subscription' => $plan, // نرسل الخطة للاستخدام داخل Blade

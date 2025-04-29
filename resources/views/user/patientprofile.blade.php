@@ -38,7 +38,11 @@
                 <span>{{ Auth::user()->age }}</span>
             </p>
             <span class="inline-block mt-4 bg-indigo-700 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm select-none">
-            {{ Auth::$subscriprion->plan }}
+               @if(Auth::user()->subscription)
+                    {{ Auth::user()->subscription->plan }}
+                @else
+                    No subscription
+                @endif
      </span>
         </div>
     </div>

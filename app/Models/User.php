@@ -103,4 +103,14 @@ class User extends Authenticatable
             }
         });
     }
+    // App\Models\User.php
+
+    // App\Models\User.php
+
+    public function subscription()
+    {
+        return $this->hasOne(subscriptions::class);
+    }
+
+
 }
