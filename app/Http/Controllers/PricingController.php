@@ -126,14 +126,15 @@ class PricingController extends Controller
     {
         $user = auth()->user();
 
-
+        // جلب اشتراك المستخدم من جدول subscriptions
         $subscription = subscriptions::where('user_id', $user->id)
-            ->latest('created_at')
+            ->latest('created_at') // تجلب أحدث اشتراك حسب تاريخ الإنشاء
             ->first();
 
         $plan = $subscription ? $subscription->plan : null;
+
         return view('user.pricing', [
-            'subscription' => $plan,
+            'subscription' => $plan, // نرسل الخطة للاستخدام داخل Blade
         ]);
     }
 

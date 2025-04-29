@@ -85,6 +85,7 @@ Route::get('/TProfileController.php', function () {
 });
 
 
+
 // Welcome route with redirect if authenticated
 Route::get('/', function () {
     $user = Auth::user();
@@ -139,3 +140,9 @@ Route::post('/conference/endCall/{conference}', [ConsultationController::class, 
 
 // web.php
 Route::get('/therapists/{id}', [TProfileController::class, 'show1'])->name('therapists.show');
+
+
+Route::get('/uprofile', function () {
+    return view('user.patientprofile');
+});
+

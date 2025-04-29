@@ -46,7 +46,7 @@
                 </a>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="{{ url('/profile') }}" class="flex items-center space-x-3 hover:bg-indigo-600 rounded-full px-3 py-1 transition">
+                <a href="{{ url('/uprofile') }}" class="flex items-center space-x-3 hover:bg-indigo-600 rounded-full px-3 py-1 transition">
                     <img
                         src="https://storage.googleapis.com/a1aa/image/b2532d30-fc43-451c-17d1-cc6c49ee7eb0.jpg"
                         alt="Profile avatar of authenticated user with short brown hair, smiling gently, wearing a light blue shirt"
