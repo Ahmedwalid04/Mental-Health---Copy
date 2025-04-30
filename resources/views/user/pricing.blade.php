@@ -24,8 +24,8 @@
             <p class="text-4xl font-extrabold mb-8">$0 <span class="text-base font-semibold ml-1">/month</span></p>
             <ul class="mb-8 space-y-3 text-base">
                 <li class="flex items-center gap-3"><span class="text-green-400 font-bold">✔</span> Limited Articles</li>
+                <li class="flex items-center gap-3"><span class="text-green-400 font-bold">✔</span> Assessments </li>
                 <li class="flex items-center gap-3"><span class="text-red-500 font-bold">✖</span> 1-on-1 Sessions</li>
-                <li class="flex items-center gap-3"><span class="text-red-500 font-bold">✖</span> Assessments</li>
                 <li class="flex items-center gap-3"><span class="text-red-500 font-bold">✖</span> Activities</li>
             </ul>
             @if ($subscription == 'basic')
